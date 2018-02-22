@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/csc309-18s/assignment-2-spaghetti-makes-me-moody/issues"
   },
-  "homepage": "https://github.com/csc309-18s/assignment-2-spaghetti-makes-me-moody#readme",
+  "homepage": ".",
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
