@@ -1,0 +1,31 @@
+{
+  "name": "assignment-2-spaghetti-makes-me-moody",
+  "version": "1.0.0",
+  "description": "",
+  "main": "/src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csc309-18s/assignment-2-spaghetti-makes-me-moody.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/csc309-18s/assignment-2-spaghetti-makes-me-moody/issues"
+  },
+  "homepage": "https://github.com/csc309-18s/assignment-2-spaghetti-makes-me-moody#readme",
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react": "^6.24.1"
+  }
+}
