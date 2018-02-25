@@ -19,15 +19,21 @@ class Application extends React.Component {
     document.body.style = 'background-color: #5F9EA0;';
 
     this.state = {
-      view: 'Journal'
+      view: 'Journal',
+      historyData: {}
     };
 
     this.handleViewChange = this.handleViewChange.bind(this);
+    this.setHistoryData = this.setHistoryData.bind(this);
   }
 
   handleViewChange(viewString) {
     console.log(viewString);
     this.setState({ view: viewString });
+  }
+
+  setHistoryData(data) {
+    this.state.historyData = data
   }
 
   render() {
@@ -43,7 +49,9 @@ class Application extends React.Component {
         React.createElement(
           'div',
           { style: MainLayoutStyle },
-          React.createElement(MainView, { viewType: this.state.view })
+          React.createElement(MainView, { state: this.state,
+                                          changeView: this.handleViewChange,
+                                          setHistorydata: this.setHistoryData })
         )
       )
     );
@@ -51,11 +59,12 @@ class Application extends React.Component {
 }
 
 function MainView(props) {
-  const viewType = props.viewType;
+  const viewType = props.state.view;
   if (viewType === 'Journal') {
-    return React.createElement(JournalView, null);
+    return React.createElement(JournalView, {changeView: props.changeView,
+                                             setHistoryData: props.setHistorydata});
   } else if (viewType === 'History') {
-    return React.createElement(HistoryView, null);
+    return React.createElement(HistoryView, {historyData: props.state.historyData});
   } else if (viewType === 'Overall') {
     return React.createElement(OverallView, null);
   } else {

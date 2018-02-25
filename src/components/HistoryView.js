@@ -14,7 +14,16 @@ class HistoryView extends React.Component {
         'h1',
         { 'class': 'HeaderTitle' },
         'History'
+      ),
+      React.createElement(
+        'ul',
+        {'class': 'historyDataList'},
+        React.createElement(
+          'li', {'class': 'historyItem'},
+          JSON.stringify(this.props.historyData)
+        )
       )
+
     );
   }
 }
