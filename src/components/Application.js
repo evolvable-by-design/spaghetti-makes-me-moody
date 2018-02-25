@@ -20,7 +20,8 @@ class Application extends React.Component {
 
     this.state = {
       view: 'Journal',
-      historyData: {}
+      // Eventually this will load the data for the current user
+      historyData: []
     };
 
     this.handleViewChange = this.handleViewChange.bind(this);
@@ -33,7 +34,9 @@ class Application extends React.Component {
   }
 
   setHistoryData(data) {
-    this.state.historyData = data
+      let newHistoryData = this.state.historyData
+      newHistoryData.push(data)
+      this.setState({historyData: newHistoryData})
   }
 
   render() {

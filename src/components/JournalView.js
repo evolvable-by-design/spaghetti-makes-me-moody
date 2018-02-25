@@ -49,10 +49,11 @@ class JournalView extends React.Component {
         if (window.confirm('Would you like to view the results of your entry analysis now?')){
           // Set data and move to history view - currently just sending the
           // entire response until we keep track of entries
-          props.setHistoryData(response)
+          props.setHistoryData(response.data)
           props.changeView('History')
         } else {
-          // Do nothing!
+          // Add data but don't change view
+          props.setHistoryData(response.data)
         }
       })
       .catch(function (error) {
