@@ -10,11 +10,11 @@ class HistoryView extends React.Component {
     return (
       <div>
         <h1 class="HeaderTitle">History</h1>
-          <div>
+        <div>
           <ul class="historyDataList">
-          {this.props.historyData.map(function(listValue){
-            return <li>{JSON.stringify(listValue)}</li>;
-          })}
+            {this.props.historyData.map(function(listValue) {
+              return <li>{JSON.stringify(listValue)}</li>;
+            })}
           </ul>
         </div>
       </div>

@@ -7,10 +7,10 @@
   margin: 10px 10px 10px 10px;
   overflow: hidden;
   border: none;
-  font: normal 70px/1 "VT323", Helvetica, sans-serif;
-  color: rgba(255,157,0,1);
+  font: normal 70px/1 'VT323', Helvetica, sans-serif;
+  color: rgba(255, 157, 0, 1);
   text-align: center;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
-  text-shadow: 5px 5px 0 rgba(68,51,15,1) ;
+  text-shadow: 5px 5px 0 rgba(68, 51, 15, 1);
 }

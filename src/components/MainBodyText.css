@@ -6,10 +6,10 @@
   padding: 10px;
   overflow: hidden;
   border: none;
-  font: normal 40px/1 "VT323", Helvetica, sans-serif;
-  color: rgba(255,255,255,1);
+  font: normal 40px/1 'VT323', Helvetica, sans-serif;
+  color: rgba(255, 255, 255, 1);
   text-align: center;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
-  text-shadow: 2px 2px 0 rgba(109,158,235,1) ;
+  text-shadow: 2px 2px 0 rgba(109, 158, 235, 1);
 }

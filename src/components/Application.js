@@ -34,24 +34,25 @@ class Application extends React.Component {
   }
 
   setHistoryData(data) {
-      let newHistoryData = this.state.historyData
-      newHistoryData.push(data)
-      this.setState({historyData: newHistoryData})
+    let newHistoryData = this.state.historyData;
+    newHistoryData.push(data);
+    this.setState({ historyData: newHistoryData });
   }
 
   render() {
     return (
       <div>
         <div style={HeaderLayoutStyle}>
-          <HeaderView
-            onViewButtonClick={this.handleViewChange}
-          />
+          <HeaderView onViewButtonClick={this.handleViewChange} />
           <div style={MainLayoutStyle}>
-              <MainView state={this.state} changeView={this.handleViewChange}
-                setHistoryData={this.setHistoryData}/>
+            <MainView
+              state={this.state}
+              changeView={this.handleViewChange}
+              setHistoryData={this.setHistoryData}
+            />
           </div>
         </div>
-    </div>
+      </div>
     );
   }
 }
@@ -59,16 +60,19 @@ class Application extends React.Component {
 function MainView(props) {
   const viewType = props.state.view;
   if (viewType === 'Journal') {
-    return <JournalView changeView={props.changeView}
-                        setHistoryData={props.setHistoryData} />
+    return (
+      <JournalView
+        changeView={props.changeView}
+        setHistoryData={props.setHistoryData}
+      />
+    );
   } else if (viewType === 'History') {
-    return <HistoryView historyData={props.state.historyData} />
+    return <HistoryView historyData={props.state.historyData} />;
   } else if (viewType === 'Overall') {
-    return <OverallView />
+    return <OverallView />;
   } else {
-    return
+    return;
   }
 }
-
 
 export default Application;
