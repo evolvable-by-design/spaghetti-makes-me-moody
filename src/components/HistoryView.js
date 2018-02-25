@@ -7,22 +7,19 @@ class HistoryView extends React.Component {
   }
 
   render() {
-    return React.createElement(
-      'div',
-      null,
-      React.createElement(
-        'h1',
-        { 'class': 'HeaderTitle' },
-        'History'
-      ),
-      React.createElement("ul", 'historyDataList',
-      this.props.historyData.map(function(listValue){
-        return React.createElement("li", null, JSON.stringify(listValue));
-      })
-    )
-)   
+    return (
+      <div>
+        <h1 class="HeaderTitle">History</h1>
+          <div>
+          <ul class="historyDataList">
+          {this.props.historyData.map(function(listValue){
+            return <li>{JSON.stringify(listValue)}</li>;
+          })}
+          </ul>
+        </div>
+      </div>
+    );
   }
 }
 
 export default HistoryView;
-

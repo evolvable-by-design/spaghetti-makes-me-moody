@@ -27,53 +27,26 @@ class HeaderView extends React.Component {
   }
 
   hello() {
-    console.log("hello");
+    console.log("hello")
   }
 
   render() {
-    return React.createElement(
-      'div',
-      null,
-      React.createElement(
-        'div',
-        { style: HeaderLayoutStyle },
-        React.createElement('link', { async: true, href: 'http://fonts.googleapis.com/css?family=VT323', 'data-generated': 'http://enjoycss.com', rel: 'stylesheet', type: 'text/css' }),
-        React.createElement('img', { src: require('./spaghetti-pixel.png'), style: ImageLayoutStyle }),
-        React.createElement(
-          'h1',
-          { 'class': 'HeaderTitle', style: HeaderTitleLayoutStyle },
-          'spaghetti makes me moody'
-        ),
-        React.createElement('img', { src: require('./spaghetti-pixel.png'), style: ImageLayoutStyle }),
-        React.createElement(
-          'div',
-          { 'class': 'TabButtons', style: ButtonLayoutStyle },
-          React.createElement(
-            'button',
-            { 'class': 'TabButton', onClick: () => {
-                this.props.onViewButtonClick("Journal");
-              } },
-            'Journal'
-          ),
-          React.createElement(
-            'button',
-            { 'class': 'TabButton', onClick: () => {
-                this.props.onViewButtonClick("History");
-              } },
-            'History'
-          ),
-          React.createElement(
-            'button',
-            { 'class': 'TabButton', onClick: () => {
-                this.props.onViewButtonClick("Overall");
-              } },
-            'Overall'
-          )
-        )
-      )
+    return (
+      <div>
+        <div style={HeaderLayoutStyle}>
+          <link async href="http://fonts.googleapis.com/css?family=VT323" data-generated="http://enjoycss.com" rel="stylesheet" type="text/css"/>
+          <img src={require('./spaghetti-pixel.png')} style={ImageLayoutStyle}/>
+          <h1 class="HeaderTitle" style={HeaderTitleLayoutStyle}>spaghetti makes me moody</h1>
+          <img src={require('./spaghetti-pixel.png')} style={ImageLayoutStyle}/>
+          <div class="TabButtons" style={ButtonLayoutStyle}>
+            <button class="TabButton" onClick={() => { this.props.onViewButtonClick("Journal") }}>Journal</button>
+    		    <button class="TabButton" onClick={() => { this.props.onViewButtonClick("History") }}>History</button>
+            <button class="TabButton" onClick={() => { this.props.onViewButtonClick("Overall") }}>Overall</button>
+          </div>
+        </div>
+      </div>
     );
   }
 }
 
 export default HeaderView;
-

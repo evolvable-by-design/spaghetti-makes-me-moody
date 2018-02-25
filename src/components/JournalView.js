@@ -8,18 +8,9 @@ const textBoxLayoutStyle = {
   'text-align': 'center'
 };
 
-const textBoxStyle = {
-  width: '600px',
-  height: '200px'
-};
-
 const buttonLayoutStyle = {
   'margin-top': '20px'
 };
-
-function google_post(data, prop) {
-    
-}
 
 class JournalView extends React.Component {
   constructor(props) {
@@ -63,38 +54,23 @@ class JournalView extends React.Component {
   }
 
   render() {
-    return React.createElement(
-      'div',
-      null,
-      React.createElement(
-        'div',
-        { style: textBoxLayoutStyle },
-        React.createElement(
-          'b',
-          { class: 'MainBodyText' },
-          'how was your day? :)'
-        ),
-        React.createElement(
-          'form',{onSubmit: this.handleSubmit(this.props)},
-          React.createElement(
-            'label',
-            null,
-            React.createElement('textarea', { class: 'JournalBox', type: 'text', name: 'journalEntry', value: this.state.entryValue, onChange: this.handleChange})
-          ),
-          React.createElement(
-            'div',
-            { style: buttonLayoutStyle },
-            React.createElement(
-              'button',
-              { class: 'SubmitButton', type: 'submit'},
-              'Submit'
-            )
-          )
-        )
-      )
+    return (
+      <div>
+        <div style={textBoxLayoutStyle}>
+        <b class="MainBodyText">how was your day? :)</b>
+        <form onSubmit={this.handleSubmit(this.props)}>
+          <label>
+            <textarea class="JournalBox" type="text" name="journalEntry"
+              value={this.state.entryValue} onChange={this.handleChange}/>
+          </label>
+          <div style={buttonLayoutStyle}>
+            <button class="SubmitButton" type='submit'>Submit</button>
+          </div>
+        </form>
+        </div>
+      </div>
     );
   }
 }
 
 export default JournalView;
-

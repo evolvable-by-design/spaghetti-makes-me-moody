@@ -40,23 +40,18 @@ class Application extends React.Component {
   }
 
   render() {
-    return React.createElement(
-      'div',
-      null,
-      React.createElement(
-        'div',
-        { style: HeaderLayoutStyle },
-        React.createElement(HeaderView, {
-          onViewButtonClick: this.handleViewChange
-        }),
-        React.createElement(
-          'div',
-          { style: MainLayoutStyle },
-          React.createElement(MainView, { state: this.state,
-                                          changeView: this.handleViewChange,
-                                          setHistorydata: this.setHistoryData })
-        )
-      )
+    return (
+      <div>
+        <div style={HeaderLayoutStyle}>
+          <HeaderView
+            onViewButtonClick={this.handleViewChange}
+          />
+          <div style={MainLayoutStyle}>
+              <MainView state={this.state} changeView={this.handleViewChange}
+                setHistoryData={this.setHistoryData}/>
+          </div>
+        </div>
+    </div>
     );
   }
 }
@@ -64,16 +59,16 @@ class Application extends React.Component {
 function MainView(props) {
   const viewType = props.state.view;
   if (viewType === 'Journal') {
-    return React.createElement(JournalView, {changeView: props.changeView,
-                                             setHistoryData: props.setHistorydata});
+    return <JournalView changeView={props.changeView}
+                        setHistoryData={props.setHistoryData} />
   } else if (viewType === 'History') {
-    return React.createElement(HistoryView, {historyData: props.state.historyData});
+    return <HistoryView historyData={props.state.historyData} />
   } else if (viewType === 'Overall') {
-    return React.createElement(OverallView, null);
+    return <OverallView />
   } else {
-    return;
+    return
   }
 }
 
-export default Application;
 
+export default Application;

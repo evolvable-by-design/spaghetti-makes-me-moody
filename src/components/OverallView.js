@@ -7,17 +7,12 @@ class OverallView extends React.Component {
   }
 
   render() {
-    return React.createElement(
-      'div',
-      null,
-      React.createElement(
-        'h1',
-        { 'class': 'HeaderTitle' },
-        'Overall'
-      )
+    return (
+      <div>
+        <h1 class="HeaderTitle">Overall</h1>
+      </div>
     );
   }
 }
 
 export default OverallView;
-
