@@ -1,5 +1,8 @@
 import React from 'react';
-import './HeaderTitle.css';
+
+const textBoxLayoutStyle = {
+  'text-align': 'center'
+};
 
 class HistoryView extends React.Component {
   constructor(props) {
@@ -11,11 +14,34 @@ class HistoryView extends React.Component {
       <div>
         <h1 class="HeaderTitle">History</h1>
         <div>
-          <ul class="historyDataList">
+          <ol class="historyDataList">
             {this.props.historyData.map(function(listValue) {
-              return <li>{JSON.stringify(listValue)}</li>;
+              return (
+                <li>
+                  <div>
+                    <b class="MainBodyText">
+                      Entry date: {JSON.stringify(listValue.date)}
+                    </b>
+                  </div>
+                  <div>
+                    <label>
+                      <textarea
+                        class="JournalBox"
+                        type="text"
+                        name="historicalEntryText"
+                        value={listValue.entry}
+                      />
+                    </label>
+                  </div>
+                  <div>
+                    <p class="MainBodyText">
+                      Tags: {JSON.stringify(listValue.responseData)}
+                    </p>
+                  </div>
+                </li>
+              );
             })}
-          </ul>
+          </ol>
         </div>
       </div>
     );
