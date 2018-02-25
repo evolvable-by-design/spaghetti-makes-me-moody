@@ -1,15 +1,14 @@
 import React from 'react';
+import './MainBodyText.css';
+import './JournalBox.css';
+import './SubmitButton.css';
 
 const textBoxLayoutStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)'
+  'text-align': 'center'
 };
 
-const textBoxStyle = {
-  width: '600px',
-  height: '200px'
+const buttonLayoutStyle = {
+  'margin-top': '20px'
 };
 
 class JournalView extends React.Component {
@@ -21,12 +20,14 @@ class JournalView extends React.Component {
     return (
       <div>
         <div style={textBoxLayoutStyle}>
-        <b>how was you day? :)</b>
+        <b class="MainBodyText">how was your day? :)</b>
         <form>
           <label>
-            <input type="text" name="journalEntry" style={textBoxStyle}/>
+            <textarea class="JournalBox" type="text" name="journalEntry"/>
           </label>
-          <input type="submit" value="Submit" />
+          <div style={buttonLayoutStyle}>
+            <button class="SubmitButton">Submit</button>
+          </div>
         </form>
         </div>
       </div>

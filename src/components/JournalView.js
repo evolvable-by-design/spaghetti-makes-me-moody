@@ -1,15 +1,19 @@
 import React from 'react';
+import './MainBodyText.css';
+import './JournalBox.css';
+import './SubmitButton.css';
 
 const textBoxLayoutStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)'
+  'text-align': 'center'
 };
 
 const textBoxStyle = {
   width: '600px',
   height: '200px'
+};
+
+const buttonLayoutStyle = {
+  'margin-top': '20px'
 };
 
 class JournalView extends React.Component {
@@ -26,8 +30,8 @@ class JournalView extends React.Component {
         { style: textBoxLayoutStyle },
         React.createElement(
           'b',
-          null,
-          'how was you day? :)'
+          { 'class': 'MainBodyText' },
+          'how was your day? :)'
         ),
         React.createElement(
           'form',
@@ -35,9 +39,17 @@ class JournalView extends React.Component {
           React.createElement(
             'label',
             null,
-            React.createElement('input', { type: 'text', name: 'journalEntry', style: textBoxStyle })
+            React.createElement('textarea', { 'class': 'JournalBox', type: 'text', name: 'journalEntry' })
           ),
-          React.createElement('input', { type: 'submit', value: 'Submit' })
+          React.createElement(
+            'div',
+            { style: buttonLayoutStyle },
+            React.createElement(
+              'button',
+              { 'class': 'SubmitButton' },
+              'Submit'
+            )
+          )
         )
       )
     );
