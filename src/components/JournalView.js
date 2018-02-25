@@ -20,18 +20,22 @@ class JournalView extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  resetEntryBox() {
+    this.setState({ entryValue: 'Please elaborate!' });
+  }
+
   handleChange(event) {
     this.setState({ entryValue: event.target.value });
   }
 
   handleSubmit(props) {
-    // alert('Your entry is attempting to be submitted');
+    var self = this;
     return event => {
       event.preventDefault();
       let postData = {
         document: {
           type: 'PLAIN_TEXT',
-          content: this.state.entryValue
+          content: self.state.entryValue
         }
       };
 
@@ -41,6 +45,12 @@ class JournalView extends React.Component {
           postData
         )
         .then(function(response) {
+          let historyData = {
+            date: new Date(),
+            entry: self.state.entryValue,
+            responseData: response.data
+          };
+
           if (
             window.confirm(
               'Would you like to view the results of your entry analysis now?'
@@ -48,11 +58,13 @@ class JournalView extends React.Component {
           ) {
             // Set data and move to history view - currently just sending the
             // entire response until we keep track of entries
-            props.setHistoryData(response.data);
+            props.setHistoryData(historyData);
             props.changeView('History');
           } else {
             // Add data but don't change view
-            props.setHistoryData(response.data);
+            props.setHistoryData(historyData);
+            // Reset entry box
+            self.resetEntryBox();
           }
         })
         .catch(function(error) {
