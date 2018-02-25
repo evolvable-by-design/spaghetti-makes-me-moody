@@ -26,10 +26,6 @@ class HeaderView extends React.Component {
     super(props);
   }
 
-  hello() {
-    console.log('hello');
-  }
-
   render() {
     return (
       <div>
