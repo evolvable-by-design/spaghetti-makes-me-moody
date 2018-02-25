@@ -1,9 +1,9 @@
 .TabButton {
-  background: rgba(255,157,0,1);
+  background: rgba(255, 157, 0, 1);
   border-radius: 100px;
   padding: 10px 60px;
   text-decoration: none;
-  font-size: 1.0em;
+  font-size: 1em;
   margin: 0 15px;
   border: none;
 
@@ -12,12 +12,12 @@
   -moz-box-sizing: content-box;
   box-sizing: content-box;
   overflow: hidden;
-  font: normal 40px/1 "VT323", Helvetica, sans-serif;
-  color: rgba(255,255,255,1);
+  font: normal 40px/1 'VT323', Helvetica, sans-serif;
+  color: rgba(255, 255, 255, 1);
   text-align: center;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
-  text-shadow: 2px 2px 0 rgba(109,158,235,1) ;
+  text-shadow: 2px 2px 0 rgba(109, 158, 235, 1);
 
   outline: none !important;
 }
@@ -37,19 +37,37 @@
 
 /* Active state animation keyframes below */
 @-webkit-keyframes active {
-  0% {-webkit-transform: scale(1,1);transform: scale(1,1);}
-  90% {-webkit-transform: scale(.9,.88);transform: scale(.9,.88);}
-  100% {-webkit-transform: scale(.92,.9);transform: scale(.92,.9);}
+  0% {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  90% {
+    -webkit-transform: scale(0.9, 0.88);
+    transform: scale(0.9, 0.88);
+  }
+  100% {
+    -webkit-transform: scale(0.92, 0.9);
+    transform: scale(0.92, 0.9);
+  }
 }
 
 keyframes active {
-  0% {-webkit-transform: scale(1,1);transform: scale(1,1);}
-  90% {-webkit-transform: scale(.9,.88);transform: scale(.9,.88);}
-  100% {-webkit-transform: scale(.92,.9);transform: scale(.92,.9);}
+  0% {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  90% {
+    -webkit-transform: scale(0.9, 0.88);
+    transform: scale(0.9, 0.88);
+  }
+  100% {
+    -webkit-transform: scale(0.92, 0.9);
+    transform: scale(0.92, 0.9);
+  }
 }
 
 /* Hover state animation keyframes below */
-
+/* prettier-ignore */
 @-webkit-keyframes hover {
   0% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   1.8% { -webkit-transform: matrix3d(1.016, 0, 0, 0, 0, 1.037, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.016, 0, 0, 0, 0, 1.037, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
@@ -88,7 +106,7 @@ keyframes active {
   96% { -webkit-transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   100% { -webkit-transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
 }
-
+/* prettier-ignore */
 @keyframes hover {
   0% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   1.8% { -webkit-transform: matrix3d(1.016, 0, 0, 0, 0, 1.037, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.016, 0, 0, 0, 0, 1.037, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
