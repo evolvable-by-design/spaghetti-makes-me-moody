@@ -2,7 +2,7 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 
 const data = {
-  labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
   datasets: [
     {
       label: 'Happiness',
@@ -23,7 +23,7 @@ const data = {
       pointHoverBorderWidth: 0,
       pointRadius: 3,
       pointHitRadius: 0,
-      data: [0.1, 0.5, 1.0, 0.8, 0.5]
+      data: [0.1, 0.5, 1.0, 0.8, 0.5, 1.0, 0.1, 0.2, 0.6, 0.8, 0.6]
     }
   ]
 };
