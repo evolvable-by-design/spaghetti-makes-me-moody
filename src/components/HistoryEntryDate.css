@@ -1,0 +1,8 @@
+@import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
+
+.HistoryEntryDate {
+  font: 1.3em 'Press start 2P';
+  font-weight: 700;
+  text-align: center;
+  margin: 10px 0px 0px 0px;
+}

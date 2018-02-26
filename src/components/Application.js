@@ -6,11 +6,11 @@ import OverallView from './OverallView';
 
 const HeaderLayoutStyle = {
   top: '05%',
-  'text-align': 'center'
+  textAlign: 'center'
 };
 
 const MainLayoutStyle = {
-  'margin-top': '50px'
+  marginTop: '50px'
 };
 
 class Application extends React.Component {
@@ -35,7 +35,7 @@ class Application extends React.Component {
 
   setHistoryData(data) {
     let newHistoryData = this.state.historyData;
-    newHistoryData.push(data);
+    newHistoryData.unshift(data);
     this.setState({ historyData: newHistoryData });
   }
 

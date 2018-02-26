@@ -1,0 +1,23 @@
+@import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
+
+.HistoryEntryBox {
+  -webkit-box-shadow: 3px 0 white, -3px 0 white, 0 -3px white, 0 3px white,
+    6px 0 white, -6px 0 white, 0 -6px white, 0 6px white, 0 0 0 3px white,
+    9px 0 red, -9px 0 red, 0 9px red, 0 -9px red, 0 -3px 0 3px red,
+    0 3px 0 3px red, 3px 0 0 3px red, -3px 0 0 3px red;
+  box-shadow: 3px 0 white, -3px 0 white, 0 -3px white, 0 3px white, 6px 0 white,
+    -6px 0 white, 0 -6px white, 0 6px white, 0 0 0 3px white, 9px 0 red,
+    -9px 0 red, 0 9px red, 0 -9px red, 0 -3px 0 3px red, 0 3px 0 3px red,
+    3px 0 0 3px red, -3px 0 0 3px red;
+  margin: 1em 0em 3em 0em;
+  padding: 0em 0.6em;
+  font: 1em 'Press start 2P';
+  font-weight: 700;
+  line-height: 160%;
+  width: 800px;
+  height: auto;
+  text-align: left;
+  display: inline-block;
+  background: white;
+  word-wrap: break-word;
+}

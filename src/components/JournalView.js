@@ -5,11 +5,11 @@ import './JournalBox.css';
 import './SubmitButton.css';
 
 const textBoxLayoutStyle = {
-  'text-align': 'center'
+  textAlign: 'center'
 };
 
 const buttonLayoutStyle = {
-  'margin-top': '20px'
+  marginTop: '20px'
 };
 
 class JournalView extends React.Component {

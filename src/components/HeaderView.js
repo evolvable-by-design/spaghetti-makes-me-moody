@@ -3,22 +3,22 @@ import './HeaderTitle.css';
 import './HeaderButton.css';
 
 const HeaderTitleLayoutStyle = {
-  'vertical-align': 'middle',
+  verticalAlign: 'middle',
   display: 'inline-block'
 };
 
 const HeaderLayoutStyle = {
-  'text-align': 'center'
+  textAlign: 'center'
 };
 
 const ImageLayoutStyle = {
-  'vertical-align': 'middle',
+  verticalAlign: 'middle',
   width: '80px',
   height: 'auto'
 };
 
 const ButtonLayoutStyle = {
-  'margin-top': '40px'
+  marginTop: '40px'
 };
 
 class HeaderView extends React.Component {

@@ -1,7 +1,11 @@
 import React from 'react';
+import HistoryEntry from './HistoryEntry';
 
-const textBoxLayoutStyle = {
-  'text-align': 'center'
+const historyDataList = {
+  listStyleType: 'none',
+  textAlign: 'center',
+  display: 'inline-block',
+  paddingLeft: '0.0em'
 };
 
 class HistoryView extends React.Component {
@@ -14,30 +18,15 @@ class HistoryView extends React.Component {
       <div>
         <h1 class="HeaderTitle">History</h1>
         <div>
-          <ol class="historyDataList">
+          <ol style={historyDataList}>
             {this.props.historyData.map(function(listValue) {
               return (
                 <li>
-                  <div>
-                    <b class="MainBodyText">
-                      Entry date: {JSON.stringify(listValue.date)}
-                    </b>
-                  </div>
-                  <div>
-                    <label>
-                      <textarea
-                        class="JournalBox"
-                        type="text"
-                        name="historicalEntryText"
-                        value={listValue.entry}
-                      />
-                    </label>
-                  </div>
-                  <div>
-                    <p class="MainBodyText">
-                      Tags: {JSON.stringify(listValue.responseData)}
-                    </p>
-                  </div>
+                  <HistoryEntry
+                    date={listValue.date}
+                    data={JSON.stringify(listValue.responseData)}
+                    entry={listValue.entry}
+                  />
                 </li>
               );
             })}
