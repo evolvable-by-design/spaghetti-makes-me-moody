@@ -1,4 +1,5 @@
 import React from 'react';
+import 'chartjs-plugin-deferred';
 import { Line } from 'react-chartjs-2';
 
 const data = {
@@ -36,6 +37,11 @@ class LineGraph extends React.Component {
           data={data}
           height={150}
           options={{
+            plugins: {
+              deferred: {
+                delay: 500 //500ms
+              }
+            },
             tooltips: {
               callbacks: {
                 title: function(tooltipItem, data) {

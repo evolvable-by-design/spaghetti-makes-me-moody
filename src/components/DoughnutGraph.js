@@ -1,4 +1,5 @@
 import React from 'react';
+import 'chartjs-plugin-deferred';
 import { Doughnut } from 'react-chartjs-2';
 import { defaults } from 'react-chartjs-2';
 
@@ -23,6 +24,11 @@ class DoughnutGraph extends React.Component {
           data={data}
           height={150}
           options={{
+            plugins: {
+              deferred: {
+                delay: 500 //500ms
+              }
+            },
             maintainAspectRatio: false
           }}
         />
