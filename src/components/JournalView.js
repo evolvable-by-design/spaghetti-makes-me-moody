@@ -15,13 +15,19 @@ const buttonLayoutStyle = {
 class JournalView extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { entryValue: 'Please elaborate!' };
+    this.state = {
+      entryValue: '',
+      placeholderText: 'Please elaborate!'
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   resetEntryBox() {
-    this.setState({ entryValue: 'Please elaborate!' });
+    this.setState({
+      entryValue: '',
+      placeholderText: 'Please elaborate!'
+    });
   }
 
   handleChange(event) {
@@ -83,6 +89,7 @@ class JournalView extends React.Component {
                 type="text"
                 name="journalEntry"
                 value={this.state.entryValue}
+                placeholder={this.state.placeholderText}
                 onChange={this.handleChange}
               />
             </label>
