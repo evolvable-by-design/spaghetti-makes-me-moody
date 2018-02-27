@@ -14,7 +14,8 @@
   font: 1em 'Press start 2P';
   font-weight: 700;
   line-height: 160%;
-  width: 800px;
+  max-width: 800px;
+  width: 80vw;
   height: auto;
   text-align: left;
   display: inline-block;
