@@ -23,12 +23,6 @@
   word-wrap: break-word;
 }
 
-.BorderLine {
-  border: 0;
-  background-color: #fff;
-  border-top: 5px dashed #8c8c8c;
-}
-
 @media screen and (max-width: 890px) {
   .HistoryEntryBox {
     font: 0.75em 'Press start 2P';
@@ -38,11 +32,6 @@
 @media screen and (max-width: 462px) {
   .HistoryEntryBox {
     font: 0.5em 'Press start 2P';
-  }
-  .BorderLine {
-    border: 0;
-    background-color: #fff;
-    border-top: 3px dashed #8c8c8c;
   }
   .history-data-list {
     margin: 0px !important;

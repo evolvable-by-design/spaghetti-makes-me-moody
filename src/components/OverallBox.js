@@ -3,28 +3,21 @@ import ReactTooltip from 'react-tooltip';
 import LineGraph from './LineGraph';
 import DoughnutGraph from './DoughnutGraph';
 import './HeaderTitle.css';
+import './OverallBoxGraphLayout.css';
+import './GraphStyle.css';
 import './HistoryEntryBox.css';
+import './BorderLineStyle.css';
 
-const OverallBoxLayoutStyle = {
+const OverallBoxAwardLayoutStyle = {
   display: 'flex',
-  flexDirection: 'row'
-};
-
-const LineGraphStyle = {
-  width: '400px',
-  marginTop: '10px',
-  marginBottom: '10px'
-};
-
-const DoughnutGraphStyle = {
-  width: '400px',
-  marginTop: '10px',
-  marginBottom: '10px'
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  maxWidth: '100%'
 };
 
 const AwardIconContainerLayoutStyle = {
-  height: '100px',
   width: '100px',
+  height: '100px',
   overflow: 'hidden',
   position: 'relative',
   margin: '20px 20px 20px 20px'
@@ -39,12 +32,6 @@ const AwardIconLayoutStyle = {
   position: 'absolute'
 };
 
-const BorderLineStyle = {
-  border: 0,
-  backgroundColor: '#fff',
-  borderTop: '5px dashed #8c8c8c'
-};
-
 class OverallBox extends React.Component {
   constructor(props) {
     super(props);
@@ -55,17 +42,17 @@ class OverallBox extends React.Component {
       <div>
         <div class="HistoryEntryBox">
           <h3>Progress</h3>
-          <div style={OverallBoxLayoutStyle}>
-            <div style={LineGraphStyle}>
+          <div class="OverallBoxGraphLayout">
+            <div class="GraphStyle">
               <LineGraph />
             </div>
-            <div style={DoughnutGraphStyle}>
+            <div class="GraphStyle">
               <DoughnutGraph />
             </div>
           </div>
-          <hr style={BorderLineStyle} />
+          <hr class="BorderLineStyle" />
           <h3>Awards</h3>
-          <div style={OverallBoxLayoutStyle}>
+          <div style={OverallBoxAwardLayoutStyle}>
             <a data-tip="SO MUCH SPAGHETTI">
               <div style={AwardIconContainerLayoutStyle}>
                 <img
@@ -84,8 +71,17 @@ class OverallBox extends React.Component {
               </div>
             </a>
             <ReactTooltip place="top" effect="solid" />
+            <a data-tip="MORE SPAGHETTI">
+              <div style={AwardIconContainerLayoutStyle}>
+                <img
+                  src={require('./spaghetti-pixel.png')}
+                  style={AwardIconLayoutStyle}
+                />
+              </div>
+            </a>
+            <ReactTooltip place="top" effect="solid" />
           </div>
-          <hr style={BorderLineStyle} />
+          <hr class="BorderLineStyle" />
         </div>
       </div>
     );

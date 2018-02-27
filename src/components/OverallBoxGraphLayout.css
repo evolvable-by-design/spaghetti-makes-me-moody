@@ -1,0 +1,10 @@
+.OverallBoxGraphLayout {
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 800px) {
+  .OverallBoxGraphLayout {
+    flex-direction: column;
+  }
+}
