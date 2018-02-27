@@ -22,3 +22,18 @@
   background: white;
   word-wrap: break-word;
 }
+
+@media screen and (max-width: 890px) {
+  .HistoryEntryBox {
+    font: 0.75em 'Press start 2P';
+  }
+}
+
+@media screen and (max-width: 462px) {
+  .HistoryEntryBox {
+    font: 0.5em 'Press start 2P';
+  }
+  .history-data-list {
+    margin: 0px !important;
+  }
+}

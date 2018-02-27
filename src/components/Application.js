@@ -9,10 +9,6 @@ const HeaderLayoutStyle = {
   textAlign: 'center'
 };
 
-const MainLayoutStyle = {
-  marginTop: '50px'
-};
-
 class Application extends React.Component {
   constructor(props) {
     super(props);
@@ -42,9 +38,10 @@ class Application extends React.Component {
   render() {
     return (
       <div>
+        <meta name="viewport" content="initial-scale=1" />
         <div style={HeaderLayoutStyle}>
           <HeaderView onViewButtonClick={this.handleViewChange} />
-          <div style={MainLayoutStyle}>
+          <div>
             <MainView
               state={this.state}
               changeView={this.handleViewChange}

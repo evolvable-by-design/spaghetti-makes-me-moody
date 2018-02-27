@@ -14,3 +14,24 @@
   text-overflow: ellipsis;
   text-shadow: 5px 5px 0 rgba(68, 51, 15, 1);
 }
+
+@media screen and (max-width: 890px) {
+  .HeaderTitle {
+    font: normal 55px/1 'VT323', Helvetica, sans-serif;
+    text-shadow: 1px 3px 0 rgba(68, 51, 15, 1);
+  }
+  .spaghetti-img {
+    width: 40px !important;
+  }
+}
+
+@media screen and (max-width: 462px) {
+  .HeaderTitle {
+    font: normal 25px/1 'VT323', Helvetica, sans-serif;
+    text-shadow: 1px 3px 0 rgba(68, 51, 15, 1);
+    padding: 0px;
+  }
+  .spaghetti-img {
+    width: 25px !important;
+  }
+}

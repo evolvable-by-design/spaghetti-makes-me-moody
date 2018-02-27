@@ -25,31 +25,4 @@ class HistoryEntry extends React.Component {
   }
 }
 
-function formatDate(date) {
-  var monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ];
-
-  var minute = date.getMinutes();
-  var hour = date.getHours();
-  var day = date.getDate();
-  var monthIndex = date.getMonth();
-  var year = date.getFullYear();
-
-  return (
-    hour + ':' + minute + ' ' + monthNames[monthIndex] + ' ' + day + ', ' + year
-  );
-}
-
 export default HistoryEntry;

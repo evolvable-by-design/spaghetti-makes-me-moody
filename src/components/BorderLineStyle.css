@@ -3,3 +3,9 @@
   background-color: #fff;
   border-top: 5px dashed #8c8c8c;
 }
+
+@media screen and (max-width: 462px) {
+  .BorderLineStyle {
+    border-top: 3px dashed #8c8c8c;
+  }
+}
