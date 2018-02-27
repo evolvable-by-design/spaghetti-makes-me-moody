@@ -24,7 +24,7 @@ const data = {
       pointHoverBorderWidth: 0,
       pointRadius: 3,
       pointHitRadius: 0,
-      data: [0.1, 0.5, 1.0, 0.8, 0.5, 1.0, 0.1, 0.2, 0.6, 0.8, 0.6]
+      data: [0.1, -0.5, 1.0, 0.8, 0.5, -1.0, -0.1, 0.2, 0.6, 0.8, 0.6]
     }
   ]
 };
@@ -72,7 +72,7 @@ class LineGraph extends React.Component {
                 {
                   ticks: {
                     max: 1.0,
-                    min: 0,
+                    min: -1.0,
                     stepSize: 0.5
                   }
                 }

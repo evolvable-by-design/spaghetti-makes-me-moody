@@ -11,11 +11,15 @@ const OverallBoxLayoutStyle = {
 };
 
 const LineGraphStyle = {
-  width: '400px'
+  width: '400px',
+  marginTop: '10px',
+  marginBottom: '10px'
 };
 
 const DoughnutGraphStyle = {
-  width: '400px'
+  width: '400px',
+  marginTop: '10px',
+  marginBottom: '10px'
 };
 
 const AwardIconContainerLayoutStyle = {
