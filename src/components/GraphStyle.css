@@ -1,0 +1,15 @@
+.GraphStyle {
+  max-width: 400px;
+  width: 50%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 800px) {
+  .GraphStyle {
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+}

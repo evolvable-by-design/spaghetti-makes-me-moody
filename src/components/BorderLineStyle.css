@@ -1,0 +1,5 @@
+.BorderLineStyle {
+  border: 0;
+  background-color: #fff;
+  border-top: 5px dashed #8c8c8c;
+}

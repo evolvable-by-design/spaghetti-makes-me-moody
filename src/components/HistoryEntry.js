@@ -2,12 +2,7 @@ import React from 'react';
 import Moment from 'react-moment';
 import './HistoryEntryBox.css';
 import './HistoryEntryDate.css';
-
-const BorderLineStyle = {
-  border: 0,
-  backgroundColor: '#fff',
-  borderTop: '5px dashed #8c8c8c'
-};
+import './BorderLineStyle.css';
 
 class HistoryEntry extends React.Component {
   constructor(props) {
@@ -22,7 +17,7 @@ class HistoryEntry extends React.Component {
         </h3>
         <div class="HistoryEntryBox">
           <p>{this.props.entry}</p>
-          <hr style={BorderLineStyle} />
+          <hr class="BorderLineStyle" />
           <p>{this.props.data}</p>
         </div>
       </div>
