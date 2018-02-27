@@ -13,3 +13,15 @@
   text-overflow: ellipsis;
   text-shadow: 2px 2px 0 rgba(109, 158, 235, 1);
 }
+
+@media screen and (max-width: 890px) {
+  .MainBodyText {
+    font: normal 35px/1 'VT323', Helvetica, sans-serif;
+  }
+}
+
+@media screen and (max-width: 462px) {
+  .MainBodyText {
+    font: normal 20px/1 'VT323', Helvetica, sans-serif;
+  }
+}

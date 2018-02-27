@@ -1,5 +1,6 @@
 import React from 'react';
 import HistoryEntry from './HistoryEntry';
+import './HistoryEntryBox.css';
 
 const historyDataList = {
   listStyleType: 'none',
@@ -18,7 +19,7 @@ class HistoryView extends React.Component {
       <div>
         <h1 class="HeaderTitle">History</h1>
         <div>
-          <ol style={historyDataList}>
+          <ol className="history-data-list" style={historyDataList}>
             {this.props.historyData.map(function(listValue) {
               return (
                 <li>

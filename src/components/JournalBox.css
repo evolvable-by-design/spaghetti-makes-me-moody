@@ -1,6 +1,6 @@
 .JournalBox {
   display: inline-block;
-  class="support css-property">-webkit-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
   max-width: 600px;
@@ -34,4 +34,29 @@
 }
 
 .JournalBox:focus {
+}
+
+@media screen and (max-width: 890px) {
+  .JournalBox {
+    font: normal 16px/normal 'coda', Helvetica, sans-serif;
+  }
+  .JournalBox:hover {
+    font: normal 16px/normal 'Coda', Helvetica, sans-serif;
+  }
+  .SubmitButton {
+  }
+}
+
+@media screen and (max-width: 462px) {
+  .JournalBox {
+    font: normal 12px/normal 'coda', Helvetica, sans-serif;
+  }
+  .JournalBox:hover {
+    font: normal 12px/normal 'Coda', Helvetica, sans-serif;
+  }
+  .SubmitButton {
+    font: normal 14px/27px 'coda', Helvetica, sans-serif !important;
+    width: 80px !important;
+    height: 25px !important;
+  }
 }

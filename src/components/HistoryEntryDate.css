@@ -7,3 +7,15 @@
   text-align: center;
   margin: 10px 0px 0px 0px;
 }
+
+@media screen and (max-width: 890px) {
+  .HistoryEntryDate {
+    font: 1em 'Press start 2P';
+  }
+}
+
+@media screen and (max-width: 462px) {
+  .HistoryEntryDate {
+    font: 0.75em 'Press start 2P';
+  }
+}

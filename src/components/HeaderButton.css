@@ -1,6 +1,108 @@
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 23px;
+  height: 17px;
+  left: 15px;
+  top: 15px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #373a47;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+.bm-menu-wrap {
+  left: -10px;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  overflow: hidden !important;
+  background: #373a47;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+  /* position: fixed; */
+  /* left:-10px; */
+  /* width:150px; */
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.nav-mobile {
+  display: none; /* Hide from browsers that don't support media queries */
+  padding-bottom: 20px;
+}
+
+.menu-item {
+  display: inline !important;
+  background: transparent;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 1em;
+  margin: 0px 15px;
+  border: none;
+
+  display: inline-block;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  overflow: hidden;
+  font: normal 40px/1 'VT323', Helvetica, sans-serif;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  text-shadow: 2px 2px 0 rgba(109, 158, 235, 1);
+
+  outline: none !important;
+}
+
+/* Hover state animation applied here */
+.menu-item:hover {
+  -webkit-animation: hover 1200ms linear 2 alternate;
+  animation: hover 1200ms linear 2 alternate;
+}
+
+/* Active state animation applied here */
+.menu-item:active {
+  -webkit-animation: active 1200ms ease 1 alternate;
+  animation: active 1200ms ease 1 alternate;
+  /* background: #cc7e00; */
+}
+
+.TabButtons {
+  padding-bottom: 50px;
+}
+
 .TabButton {
   background: rgba(255, 157, 0, 1);
-  border-radius: 100px;
+  border-radius: 40px;
   padding: 10px 60px;
   text-decoration: none;
   font-size: 1em;
@@ -20,6 +122,32 @@
   text-shadow: 2px 2px 0 rgba(109, 158, 235, 1);
 
   outline: none !important;
+}
+
+@media screen and (max-width: 890px) {
+  .TabButton {
+    /* border-radius: 85px; */
+    padding: 10px 30px;
+    font-size: 1.75em;
+    margin: 10px 5px;
+    max-width: 200px;
+  }
+  .TabButtons {
+    margin: 5px !important;
+    padding-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 462px) {
+  .nav-mobile {
+    display: block;
+  }
+  .TabButtons {
+    display: none !important;
+  }
+  .header {
+    margin: 0px !important;
+  }
 }
 
 /* Hover state animation applied here */
