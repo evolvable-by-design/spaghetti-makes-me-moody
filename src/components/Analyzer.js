@@ -96,6 +96,78 @@ export function sentimentFeedback(data) {
   };
 }
 
+const categories = [
+  'Adult',
+  'Hobbies & Leisure',
+  'Arts & Entertainment',
+  'Home & Garden',
+  'Internet & Telecom',
+  'Autos & Vehicles',
+  'Jobs & Education',
+  'Law & Government',
+  'Beauty & Fitness',
+  'News',
+  'Online Communities',
+  'Books & Literature',
+  'Business & Industrial',
+  'People & Society',
+  'Pets & Animals',
+  'Real Estate',
+  'Reference',
+  'Computers & Electronics',
+  'Science',
+  'Finance',
+  'Shopping',
+  'Food & Drink',
+  'Games',
+  'Sports',
+  'Health',
+  'Travel'
+];
+
+const categoryComment = [
+  '💦 Steamy.',
+  '🛋️ Your interests sound really relaxing!',
+  '🎨 Artsy.',
+  '🏡 Daily gardening can reduce your blood pressure!',
+  '📞 ',
+  '🚘 You can never have too many cars.',
+  '🎓 ',
+  '🏛️',
+  '🏋️',
+  '🗞️',
+  '💻',
+  '📚',
+  '🕴️',
+  '💑',
+  '🐱',
+  '🏬',
+  '🏤',
+  '🖥️',
+  '🔬',
+  '💵 Very financially minded of you.',
+  '🛍️',
+  '🍳',
+  '🎮',
+  '🏀',
+  '👨 Have you considered becoming a doctor?',
+  "🗻 Have you been to Mount Fuji? It's a beautiful place"
+];
+
+function getCategoryComment(classification) {
+  // Choose a random category
+  let category =
+    classification[Math.floor(Math.random() * classification.length)];
+  if (!category) {
+    return null;
+  }
+  let idx = categories.indexOf(category.name.substr(1).split('/')[0]);
+  if (idx == -1) {
+    return null;
+  }
+  return categoryComment[idx];
+}
+
 export function classificationFeedback(data) {
-  return 'hehe';
+  return data ? getCategoryComment(data.categories) : null;
 }
