@@ -25,7 +25,11 @@ class HistoryView extends React.Component {
                 <li>
                   <HistoryEntry
                     date={listValue.date}
-                    data={JSON.stringify(listValue.responseData)}
+                    data={
+                      /* TODO: handle nulls */
+                      JSON.stringify(listValue.sentimentData) +
+                      JSON.stringify(listValue.classificationData)
+                    }
                     entry={listValue.entry}
                   />
                 </li>

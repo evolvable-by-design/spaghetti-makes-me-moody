@@ -19,7 +19,6 @@
     "chartjs-plugin-deferred": "^1.0.0",
     "moment": "^2.20.1",
     "react": "^16.2.0",
-    "react-burger-menu": "^2.3.0",
     "react-chartjs-2": "^2.7.0",
     "react-dom": "^16.2.0",
     "react-moment": "^0.7.0",

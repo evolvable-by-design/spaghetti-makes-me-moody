@@ -12,6 +12,37 @@ const buttonLayoutStyle = {
   marginTop: '20px'
 };
 
+function postAnalyzeSentiment(data) {
+  return (
+    axios
+      .post(
+        'https://language.googleapis.com/v1/documents:analyzeSentiment?key=AIzaSyBAGVnmL3X96nCv0GLAxuFw4-czBVTrfyo',
+        data
+      )
+      /* This then + catch allows us to have errors even though using .all() later */
+      .then(function(content) {
+        return content;
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
+  );
+}
+
+function postClassifyText(data) {
+  return axios
+    .post(
+      'https://language.googleapis.com/v1/documents:classifyText?key=AIzaSyBAGVnmL3X96nCv0GLAxuFw4-czBVTrfyo',
+      data
+    )
+    .then(function(content) {
+      return content;
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+}
+
 class JournalView extends React.Component {
   constructor(props) {
     super(props);
@@ -45,33 +76,35 @@ class JournalView extends React.Component {
     };
 
     axios
-      .post(
-        'https://language.googleapis.com/v1/documents:analyzeSentiment?key=AIzaSyBAGVnmL3X96nCv0GLAxuFw4-czBVTrfyo',
-        postData
-      )
-      .then(function(response) {
-        let historyData = {
-          date: new Date(),
-          entry: self.state.entryValue,
-          responseData: response.data
-        };
+      .all([postAnalyzeSentiment(postData), postClassifyText(postData)])
+      .then(
+        axios.spread(function(sentiment, classification) {
+          let classData = classification ? classification.data : null;
+          let sentData = sentiment ? sentiment.data : null;
+          let historyData = {
+            date: new Date(),
+            entry: self.state.entryValue,
+            sentimentData: sentiment.data,
+            classificationData: classData
+          };
 
-        if (
-          window.confirm(
-            'Would you like to view the results of your entry analysis now?'
-          )
-        ) {
-          // Set data and move to history view - currently just sending the
-          // entire response until we keep track of entries
-          self.props.setHistoryData(historyData);
-          self.props.changeView('History');
-        } else {
-          // Add data but don't change view
-          self.props.setHistoryData(historyData);
-          // Reset entry box
-          self.resetEntryBox();
-        }
-      })
+          if (
+            window.confirm(
+              'Would you like to view the results of your entry analysis now?'
+            )
+          ) {
+            // Set data and move to history view - currently just sending the
+            // entire response until we keep track of entries
+            self.props.setHistoryData(historyData);
+            self.props.changeView('History');
+          } else {
+            // Add data but don't change view
+            self.props.setHistoryData(historyData);
+            // Reset entry box
+            self.resetEntryBox();
+          }
+        })
+      )
       .catch(function(error) {
         console.log(error);
       });
