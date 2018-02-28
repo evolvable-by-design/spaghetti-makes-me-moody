@@ -18,7 +18,7 @@ class HistoryEntry extends React.Component {
         <div class="HistoryEntryBox">
           <p>{this.props.entry}</p>
           <hr class="BorderLineStyle" />
-          <p>{this.props.data}</p>
+          <p>{this.props.data.feedback}</p>
         </div>
       </div>
     );

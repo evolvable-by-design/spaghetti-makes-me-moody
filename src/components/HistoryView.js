@@ -1,5 +1,6 @@
 import React from 'react';
 import HistoryEntry from './HistoryEntry';
+import { sentimentFeedback } from './Analyzer';
 import './HistoryEntryBox.css';
 
 const historyDataList = {
@@ -25,11 +26,9 @@ class HistoryView extends React.Component {
                 <li>
                   <HistoryEntry
                     date={listValue.date}
-                    data={
-                      /* TODO: handle nulls */
-                      JSON.stringify(listValue.sentimentData) +
-                      JSON.stringify(listValue.classificationData)
-                    }
+                    data={sentimentFeedback(
+                      listValue.sentimentData.documentSentiment
+                    )}
                     entry={listValue.entry}
                   />
                 </li>
