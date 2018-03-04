@@ -162,7 +162,7 @@ function getCategoryComment(classification) {
     return null;
   }
   let idx = categories.indexOf(category.name.substr(1).split('/')[0]);
-  if (idx == -1) {
+  if (idx === -1) {
     return null;
   }
   return categoryComment[idx];

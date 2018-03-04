@@ -84,7 +84,7 @@ class JournalView extends React.Component {
           let historyData = {
             date: new Date(),
             entry: self.state.entryValue,
-            sentimentData: sentiment.data,
+            sentimentData: sentData,
             classificationData: classData
           };
 
@@ -93,14 +93,12 @@ class JournalView extends React.Component {
               'Would you like to view the results of your entry analysis now?'
             )
           ) {
-            // Set data and move to history view - currently just sending the
-            // entire response until we keep track of entries
+            // Set data and move to history view
             self.props.setHistoryData(historyData);
             self.props.changeView('History');
           } else {
             // Add data but don't change view
             self.props.setHistoryData(historyData);
-            // Reset entry box
             self.resetEntryBox();
           }
         })
