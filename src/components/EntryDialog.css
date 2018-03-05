@@ -1,0 +1,84 @@
+.EntryDialog {
+  opacity: 1;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: auto;
+  width: 480px;
+  height: 260px;
+  border-radius: 40px;
+  outline: none;
+  background-color: #5f9ea0;
+}
+
+.EntryDialogOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff30;
+}
+
+.EntryDialogHeader {
+  overflow: hidden;
+  font: normal 40px/1 'VT323', Helvetica, sans-serif;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  text-shadow: 2px 2px 0 rgba(109, 158, 235, 1);
+}
+
+.EntryDialogContent {
+  overflow: hidden;
+  font: normal 25px/1 'VT323', Helvetica, sans-serif;
+  color: rgba(255, 255, 255, 1);
+  margin-bottom: 20px;
+  text-align: center;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  text-shadow: 2px 2px 0 rgba(109, 158, 235, 1);
+}
+
+.EntryDialogButtonContainer {
+  width: 80%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 890px) {
+  .EntryDialog {
+    width: 360px;
+    height: 220px;
+  }
+  .EntryDialogHeader {
+    font-size: 2em;
+  }
+  .EntryDialogContent {
+    font-size: 1.25em;
+  }
+
+  .EntryDialogButtonContainer {
+    width: 57%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 462px) {
+  .EntryDialog {
+    width: 300px;
+    height: 180px;
+  }
+
+  .EntryDialogHeader {
+    font-size: 1.5em;
+  }
+  .EntryDialogContent {
+    font-size: 1em;
+  }
+  .EntryDialogButtonContainer {
+    width: 66%;
+    margin: 0 auto;
+  }
+}
