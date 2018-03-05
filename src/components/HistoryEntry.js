@@ -6,10 +6,6 @@ import './HistoryEntryDate.css';
 import './BorderLineStyle.css';
 
 class HistoryEntry extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     let self = this;
     let getContent = function() {

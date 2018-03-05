@@ -33,10 +33,6 @@ const AwardIconLayoutStyle = {
 };
 
 class OverallBox extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div>
@@ -56,6 +52,7 @@ class OverallBox extends React.Component {
             <a data-tip="SO MUCH SPAGHETTI">
               <div style={AwardIconContainerLayoutStyle}>
                 <img
+                  alt="placeholder"
                   src={require('./spaghetti-pixel.png')}
                   style={AwardIconLayoutStyle}
                 />
@@ -65,6 +62,7 @@ class OverallBox extends React.Component {
             <a data-tip="MORE SPAGHETTI">
               <div style={AwardIconContainerLayoutStyle}>
                 <img
+                  alt="placeholder"
                   src={require('./spaghetti-pixel.png')}
                   style={AwardIconLayoutStyle}
                 />
@@ -74,6 +72,7 @@ class OverallBox extends React.Component {
             <a data-tip="MORE SPAGHETTI">
               <div style={AwardIconContainerLayoutStyle}>
                 <img
+                  alt="placeholder"
                   src={require('./spaghetti-pixel.png')}
                   style={AwardIconLayoutStyle}
                 />
