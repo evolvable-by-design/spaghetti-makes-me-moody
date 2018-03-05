@@ -8,6 +8,7 @@
   width: 480px;
   height: 260px;
   border-radius: 40px;
+  outline: none;
   background-color: #5f9ea0;
 }
 
