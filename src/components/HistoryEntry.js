@@ -12,7 +12,6 @@ class HistoryEntry extends React.Component {
 
   render() {
     let self = this;
-    console.log('hello' + self.props.data.sentScore);
     let getContent = function() {
       if (self.props.data.classFeedback != null) {
         return (

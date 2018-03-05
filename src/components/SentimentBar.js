@@ -30,7 +30,7 @@ class SentimentBar extends React.Component {
   render() {
     let self = this;
     let barOptions = {
-      color: '#40E0D0',
+      color: self.props.sentimentScore < 0 ? '#B71B1B' : '#40E0D0',
       strokeWidth: 1.5,
       duration: 1500,
       trailColor: '#E5FBFF',
