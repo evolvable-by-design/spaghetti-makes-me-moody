@@ -80,6 +80,7 @@ class HeaderView extends React.Component {
             </Menu>
           </div>
           <img
+            alt="placeholder"
             className="spaghetti-img"
             src={require('./spaghetti-pixel.png')}
             style={ImageLayoutStyle}
@@ -88,6 +89,7 @@ class HeaderView extends React.Component {
             spaghetti makes me moody
           </h1>
           <img
+            alt="placeholder"
             className="spaghetti-img"
             src={require('./spaghetti-pixel.png')}
             style={ImageLayoutStyle}

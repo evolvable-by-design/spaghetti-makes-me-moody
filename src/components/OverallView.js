@@ -3,10 +3,6 @@ import './HeaderTitle.css';
 import OverallBox from './OverallBox';
 
 class OverallView extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div>

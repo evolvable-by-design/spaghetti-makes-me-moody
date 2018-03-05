@@ -153,11 +153,11 @@ class JournalView extends React.Component {
             Would you like to view your results now?
           </div>
           <div class={'EntryDialogButtonContainer'}>
-            <button class={'TabButton'} onClick={self.exitToHistory}>
-              Yes
-            </button>
             <button class={'TabButton'} onClick={self.closeDialog}>
               No
+            </button>
+            <button class={'TabButton'} onClick={self.exitToHistory}>
+              Yes
             </button>
           </div>
         </Modal>

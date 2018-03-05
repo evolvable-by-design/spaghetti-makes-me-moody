@@ -3,10 +3,6 @@ import { Line } from 'react-progress-bar.js';
 import './SentimentBarStyle.css';
 
 class SentimentBar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     let self = this;
     let barOptions = {
@@ -19,7 +15,11 @@ class SentimentBar extends React.Component {
     };
     return (
       <div class="SentimentBarStyle">
-        <img src={require('./neutral.png')} class="SentimentBarIconStyle" />
+        <img
+          src={require('./neutral.png')}
+          class="SentimentBarIconStyle"
+          alt="placeholder"
+        />
         <div class="SentimentBarProgressStyle">
           <Line
             progress={Math.max(
@@ -34,11 +34,19 @@ class SentimentBar extends React.Component {
         {(function() {
           if (self.props.sentimentScore < 0) {
             return (
-              <img src={require('./mad.png')} class="SentimentBarIconStyle" />
+              <img
+                src={require('./mad.png')}
+                class="SentimentBarIconStyle"
+                alt="placeholder"
+              />
             );
           } else {
             return (
-              <img src={require('./happy.png')} class="SentimentBarIconStyle" />
+              <img
+                alt="placeholder"
+                src={require('./happy.png')}
+                class="SentimentBarIconStyle"
+              />
             );
           }
         })()}
