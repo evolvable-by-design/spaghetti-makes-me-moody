@@ -1,26 +1,6 @@
 import React from 'react';
 import { Line } from 'react-progress-bar.js';
-
-const SentimentBarStyle = {
-  overflow: 'hidden',
-  height: '50px',
-  display: 'flex',
-  flexDirection: 'row'
-};
-
-const SentimentBarIconStyle = {
-  overflow: 'hidden',
-  position: 'relative',
-  height: '50px',
-  width: '50px'
-};
-
-const SentimentBarProgressStyle = {
-  overflow: 'hidden',
-  position: 'relative',
-  margin: 'auto 0',
-  flex: '1'
-};
+import './SentimentBarStyle.css';
 
 class SentimentBar extends React.Component {
   constructor(props) {
@@ -38,9 +18,9 @@ class SentimentBar extends React.Component {
       easing: 'bounce'
     };
     return (
-      <div style={SentimentBarStyle}>
-        <img src={require('./neutral.png')} style={SentimentBarIconStyle} />
-        <div style={SentimentBarProgressStyle}>
+      <div class="SentimentBarStyle">
+        <img src={require('./neutral.png')} class="SentimentBarIconStyle" />
+        <div class="SentimentBarProgressStyle">
           <Line
             progress={Math.max(
               Math.abs(self.props.sentimentScore) / 100.0,
@@ -54,11 +34,11 @@ class SentimentBar extends React.Component {
         {(function() {
           if (self.props.sentimentScore < 0) {
             return (
-              <img src={require('./mad.png')} style={SentimentBarIconStyle} />
+              <img src={require('./mad.png')} class="SentimentBarIconStyle" />
             );
           } else {
             return (
-              <img src={require('./happy.png')} style={SentimentBarIconStyle} />
+              <img src={require('./happy.png')} class="SentimentBarIconStyle" />
             );
           }
         })()}
