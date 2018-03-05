@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import Modal from 'react-modal';
+import './EntryDialog.css';
 import './MainBodyText.css';
 import './JournalBox.css';
 import './SubmitButton.css';
@@ -48,10 +50,27 @@ class JournalView extends React.Component {
     super(props);
     this.state = {
       entryValue: '',
-      placeholderText: 'Please elaborate!'
+      placeholderText: 'Please elaborate!',
+      dialogOpen: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.openDialog = this.openDialog.bind(this);
+    this.exitToHistory = this.exitToHistory.bind(this);
+    this.closeDialog = this.closeDialog.bind(this);
+  }
+
+  openDialog() {
+    this.setState({ dialogOpen: true });
+  }
+
+  exitToHistory() {
+    this.setState({ dialogOpen: false });
+    this.props.changeView('History');
+  }
+
+  closeDialog() {
+    this.setState({ dialogOpen: false });
   }
 
   resetEntryBox() {
@@ -88,19 +107,9 @@ class JournalView extends React.Component {
             classificationData: classData
           };
 
-          if (
-            window.confirm(
-              'Would you like to view the results of your entry analysis now?'
-            )
-          ) {
-            // Set data and move to history view
-            self.props.setHistoryData(historyData);
-            self.props.changeView('History');
-          } else {
-            // Add data but don't change view
-            self.props.setHistoryData(historyData);
-            self.resetEntryBox();
-          }
+          self.props.setHistoryData(historyData);
+          self.resetEntryBox();
+          self.openDialog();
         })
       )
       .catch(function(error) {
@@ -109,6 +118,7 @@ class JournalView extends React.Component {
   }
 
   render() {
+    var self = this;
     return (
       <div>
         <div style={textBoxLayoutStyle}>
@@ -131,6 +141,26 @@ class JournalView extends React.Component {
             </div>
           </form>
         </div>
+        <Modal
+          id="modal_with_forms"
+          isOpen={self.state.dialogOpen}
+          onRequestClose={this.closeDialog}
+          overlayClassName={'EntryDialogOverlay'}
+          className={'EntryDialog'}
+        >
+          <h2 class={'EntryDialogHeader'}>Submitted!</h2>
+          <div class={'EntryDialogContent'}>
+            Would you like to view your results now?
+          </div>
+          <div class={'EntryDialogButtonContainer'}>
+            <button class={'TabButton'} onClick={self.exitToHistory}>
+              Yes
+            </button>
+            <button class={'TabButton'} onClick={self.closeDialog}>
+              No
+            </button>
+          </div>
+        </Modal>
       </div>
     );
   }
