@@ -10,16 +10,33 @@ class HistoryEntry extends React.Component {
   }
 
   render() {
+    let self = this;
+    let getContent = function() {
+      if (self.props.data.classFeedback != null) {
+        return (
+          <div class="HistoryEntryBox">
+            <p>{self.props.entry}</p>
+            <hr class="BorderLineStyle" />
+            <p>{self.props.data.sentFeedback}</p>
+            <p>{self.props.data.classFeedback}</p>
+          </div>
+        );
+      } else {
+        return (
+          <div class="HistoryEntryBox">
+            <p>{self.props.entry}</p>
+            <hr class="BorderLineStyle" />
+            <p>{self.props.data.sentFeedback}</p>
+          </div>
+        );
+      }
+    };
     return (
       <div>
         <h3 class="HistoryEntryDate">
           <Moment format="YYYY/MM/DD HH:mm">{this.props.date}</Moment>
         </h3>
-        <div class="HistoryEntryBox">
-          <p>{this.props.entry}</p>
-          <hr class="BorderLineStyle" />
-          <p>{this.props.data}</p>
-        </div>
+        {getContent()}
       </div>
     );
   }
