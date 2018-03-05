@@ -1,0 +1,40 @@
+.SentimentBarStyle {
+  overflow: hidden;
+  height: 50px;
+  display: flex;
+  flexdirection: row;
+}
+
+.SentimentBarIconStyle {
+  overflow: hidden;
+  position: relative;
+  height: 50px;
+  width: 50px;
+}
+
+.SentimentBarProgressStyle {
+  overflow: hidden;
+  position: relative;
+  margin: auto 0;
+  flex: 1;
+}
+
+@media screen and (max-width: 890px) {
+  .SentimentBarStyle {
+    height: 40px;
+  }
+  .SentimentBarIconStyle {
+    height: 40px;
+    width: 40px;
+  }
+}
+
+@media screen and (max-width: 462px) {
+  .SentimentBarStyle {
+    height: 30px;
+  }
+  .SentimentBarIconStyle {
+    height: 30px;
+    width: 30px;
+  }
+}

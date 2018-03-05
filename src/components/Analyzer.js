@@ -88,8 +88,6 @@ export function sentimentFeedback(data) {
     Math.min(10 ** magnitude * sentimentScore * 10, 100)
   );
   let text = getFeedbackText(feelingScore);
-  console.log(feelingScore);
-  console.log(text);
   return {
     feeling: feelingScore,
     feedback: text
