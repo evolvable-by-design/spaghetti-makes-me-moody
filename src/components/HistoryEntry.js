@@ -1,5 +1,6 @@
 import React from 'react';
 import Moment from 'react-moment';
+import SentimentBar from './SentimentBar.js';
 import './HistoryEntryBox.css';
 import './HistoryEntryDate.css';
 import './BorderLineStyle.css';
@@ -11,6 +12,7 @@ class HistoryEntry extends React.Component {
 
   render() {
     let self = this;
+    console.log('hello' + self.props.data.sentScore);
     let getContent = function() {
       if (self.props.data.classFeedback != null) {
         return (
@@ -19,6 +21,7 @@ class HistoryEntry extends React.Component {
             <hr class="BorderLineStyle" />
             <p>{self.props.data.sentFeedback}</p>
             <p>{self.props.data.classFeedback}</p>
+            <SentimentBar sentimentScore={self.props.data.sentScore} />
           </div>
         );
       } else {
@@ -27,6 +30,7 @@ class HistoryEntry extends React.Component {
             <p>{self.props.entry}</p>
             <hr class="BorderLineStyle" />
             <p>{self.props.data.sentFeedback}</p>
+            <SentimentBar sentimentScore={self.props.data.sentScore} />
           </div>
         );
       }

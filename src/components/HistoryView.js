@@ -30,7 +30,7 @@ class HistoryView extends React.Component {
               );
               let feedbackObj = {
                 sentFeedback: sentiment.feedback,
-                sentScore: sentiment.score,
+                sentScore: sentiment.feeling,
                 classFeedback: classification
               };
               return (
