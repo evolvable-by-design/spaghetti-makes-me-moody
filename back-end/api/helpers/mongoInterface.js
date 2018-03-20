@@ -1,13 +1,7 @@
-const express = require('express');
+'use strict';
+
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
-
-const app = express();
-
-// TODO: Actually create some endpoints
-app.get('/', (req, res) => res.send('Hello World!'));
-
-app.listen(3000, () => console.log('Example app listening on port 3000!'));
 
 // Connection URL
 // If we don't want to continue using mLabs, we can swap in another database
@@ -85,23 +79,29 @@ const dropCollection = function(db, callback) {
 };
 
 // Use connect method to connect to the server
-MongoClient.connect(url, function(err, client) {
-  assert.equal(null, err);
-  console.log('Connected successfully to server');
-  const db = client.db(dbName);
-  // Currently nesting a bunch of functions just as an example
-  insertDocuments(db, function() {
-    findDocuments(db, function() {
-      updateDocument(db, function() {
-        removeDocument(db, function() {
-          dropCollection(db, function() {
-            client.close();
+const mongoHelloWorld = function() {
+  MongoClient.connect(url, function(err, client) {
+    assert.equal(null, err);
+    console.log('Connected successfully to server');
+    const db = client.db(dbName);
+    // Currently nesting a bunch of functions just as an example
+    insertDocuments(db, function() {
+      findDocuments(db, function() {
+        updateDocument(db, function() {
+          removeDocument(db, function() {
+            dropCollection(db, function() {
+              client.close();
+            });
           });
         });
       });
     });
   });
-});
+};
 // ***************************************************************************
 // END - Example code for using mongo **************************************
 // ***************************************************************************
+
+module.exports = {
+  mongoIFTest: mongoHelloWorld
+};
