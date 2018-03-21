@@ -1,0 +1,30 @@
+{
+  "name": "spaghetti-back-end",
+  "version": "1.0.0",
+  "description": "Serves up API requests and mongoDB for moody spaghettinis",
+  "private": true,
+  "keywords": [],
+  "author": "CSC309 Group - Zach, Daniel, Calvin, Cody",
+  "license": "ISC",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.12.3",
+    "swagger-express-mw": "^0.1.0",
+    "mongodb": "^3.0.4"
+  },
+  "devDependencies": {
+    "should": "^7.1.0",
+    "supertest": "^1.0.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.0",
+    "prettier": "^1.11.1"
+  },
+  "scripts": {
+    "precommit": "lint-staged",
+    "start": "node app.js",
+    "test": "swagger project test"
+  },
+  "lint-staged": {
+    "**/*.{js,json}": ["prettier --single-quote --write", "git add"]
+  }
+}
