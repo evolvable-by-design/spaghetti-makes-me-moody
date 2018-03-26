@@ -25,7 +25,7 @@ const mongoIF = require('../helpers/mongoInterface');
   we specify that in the exports of this module that 'hello' maps to the function named 'hello'
  */
 module.exports = {
-  mongoTest: mongoDummyTest
+  createUser: createNewUser
 };
 
 /*
@@ -34,14 +34,17 @@ module.exports = {
   Param 1: a handle to the request object
   Param 2: a handle to the response object
  */
-function mongoDummyTest(req, res) {
-  // variables defined in the Swagger document can be referenced using req.swagger.params.{parameter_name}
-  var testParam = req.swagger.params.testParam.value || 'blank!!';
+function createNewUser(req, res) {
+  var userName = req.swagger.params.userName.value;
+  var password = req.swagger.params.password.value;
 
-  // this sends back a JSON response which is a single string
-  mongoIF.mongoIFTest();
-  res.json(
-    'You successfully called the mongo test endpoint, with query param: ' +
-      testParam
-  );
+  (async function() {
+    try {
+      let isCreated = await mongoIF.createUser(userName, password);
+      console.log(isCreated);
+      res.json(isCreated);
+    } catch (err) {
+      console.log(err.stack);
+    }
+  })();
 }

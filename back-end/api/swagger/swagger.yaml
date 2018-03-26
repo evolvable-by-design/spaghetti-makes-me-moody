@@ -18,25 +18,30 @@ consumes:
 produces:
   - application/json
 paths:
-  /mongoTest:
+  /createUser/{userName}/password/{password}:
     # binds a127 app logic to a route
-    x-swagger-router-controller: mongo_test
-    get:
-      description: Very basic mongo test
+    x-swagger-router-controller: user_ops
+    post:
+      description: Create a new user
       # used as the method name of the controller
-      operationId: mongoTest
+      operationId: createUser
       parameters:
-        - name: testParam
-          in: query
-          description: A random test parameter
-          required: false
+        - name: userName
+          in: path
+          description: The desired username
+          required: true
+          type: string
+        - name: password
+          in: path
+          description: The desired password
+          required: true
           type: string
       responses:
-        "200":
+        "201":
           description: Success
           schema:
             # a pointer to a definition
-            $ref: "#/definitions/mongoTestResponse"
+            $ref: "#/definitions/createUserResponse"
         # responses may fall through to errors
         default:
           description: Error
@@ -46,7 +51,7 @@ paths:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
 definitions:
-  mongoTestResponse:
+  createUserResponse:
     required:
       - message
     properties:

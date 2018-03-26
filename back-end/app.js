@@ -18,12 +18,4 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
 
   var port = process.env.PORT || 10010;
   app.listen(port);
-
-  if (swaggerExpress.runner.swagger.paths['/mongoTest']) {
-    console.log(
-      'try this:\ncurl http://127.0.0.1:' +
-        port +
-        '/mongoTest?testParam=Spaghetti_is_delightful!'
-    );
-  }
 });
