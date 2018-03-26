@@ -3,6 +3,7 @@ import HeaderView from './HeaderView';
 import JournalView from './JournalView';
 import HistoryView from './HistoryView';
 import OverallView from './OverallView';
+import LoginOverallView from './LoginOverallView';
 
 const HeaderLayoutStyle = {
   top: '05%',
@@ -15,6 +16,7 @@ class Application extends React.Component {
     document.body.style = 'background-color: #5F9EA0;';
 
     this.state = {
+      loggedIn: false,
       view: 'Journal',
       // Eventually this will load the data for the current user
       historyData: []
@@ -40,7 +42,10 @@ class Application extends React.Component {
       <div>
         <meta name="viewport" content="initial-scale=1" />
         <div style={HeaderLayoutStyle}>
-          <HeaderView onViewButtonClick={this.handleViewChange} />
+          <HeaderView
+            state={this.state}
+            onViewButtonClick={this.handleViewChange}
+          />
           <div>
             <MainView
               state={this.state}
@@ -64,9 +69,13 @@ function MainView(props) {
       />
     );
   } else if (viewType === 'History') {
-    return <HistoryView historyData={props.state.historyData} />;
+    return <HistoryView
+              state={props.state}
+            />;
   } else if (viewType === 'Overall') {
     return <OverallView />;
+  } else if (viewType === 'Login') {
+    return <LoginOverallView />;
   } else {
     return;
   }

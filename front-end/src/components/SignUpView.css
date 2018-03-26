@@ -1,0 +1,78 @@
+.SignUpFieldsVerticalLayoutStyle  {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  margin: auto;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 80%;
+  max-width: 390px;
+}
+
+.SignUpFieldsCheckMarkLayoutStyle {
+  position: relative;
+  float: right;
+}
+
+.SignUpFieldsHoriztonalLayoutStyle {
+  position: relative;
+  width: 100%;
+  text-align: left;
+}
+
+.SignUpBodyText {
+  display: inline-block;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 0px;
+  overflow: hidden;
+  border: none;
+  font: normal 40px/1 'VT323', Helvetica, sans-serif;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  text-shadow: 2px 2px 0 rgba(109, 158, 235, 1);
+}
+
+.SignUpBodyTextInput {
+  margin-bottom: 20px;
+  padding: 5px;
+  font-size: 15px;
+  width: 80%;
+  max-width: 300px;
+}
+
+.SignUpBorderLineStyle {
+  border: 0;
+  width: 60%;
+  background-color: #fff;
+  border-top: 5px dashed #8c8c8c;
+}
+
+@media screen and (max-width: 890px) {
+  .SignUpBodyText {
+    font: normal 30px/1 'VT323', Helvetica, sans-serif;
+  }
+  .SignUpBodyTextInput {
+    font-size: 14px;
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 462px) {
+  .BorderLineStyle {
+    border-top: 3px dashed #8c8c8c;
+  }
+  .SignUpBodyText {
+    font: normal 20px/1 'VT323', Helvetica, sans-serif;
+  }
+  .SignUpBodyTextInput {
+    font-size: 10px;
+    width: 70%;
+  }
+}

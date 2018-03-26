@@ -2,6 +2,7 @@ import React from 'react';
 import HistoryEntry from './HistoryEntry';
 import { sentimentFeedback, classificationFeedback } from './Analyzer';
 import './HistoryEntryBox.css';
+import './SaveAlertBox.css';
 
 const historyDataList = {
   listStyleType: 'none',
@@ -17,7 +18,10 @@ class HistoryView extends React.Component {
         <h1 class="HeaderTitle">History</h1>
         <div>
           <ol className="history-data-list" style={historyDataList}>
-            {this.props.historyData.map(function(listValue) {
+            <SaveAlertBox
+              state={this.props.state}
+            />
+            {this.props.state.historyData.map(function(listValue) {
               let sentiment = sentimentFeedback(
                 listValue.sentimentData.documentSentiment
               );
@@ -43,6 +47,19 @@ class HistoryView extends React.Component {
         </div>
       </div>
     );
+  }
+}
+
+function SaveAlertBox(props) {
+  const loggedIn = props.state.loggedIn;
+  if (!loggedIn) {
+    return (
+      <div class="SaveAlertBox">
+        <p>to SAVE your entries sign up or login!</p>
+      </div>
+    );
+  } else {
+    return (null);
   }
 }
 
