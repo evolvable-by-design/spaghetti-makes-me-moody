@@ -34,7 +34,7 @@ const createNewUser = async function(username, password) {
     const docs = await col.find({ userName: username }).toArray();
     //assert.equal(2, docs.length);
     if (docs.length > 0) {
-      return 'User name already exists!';
+      return 1;
     }
 
     // Name doesn't exist so insert the user into the db
@@ -44,7 +44,39 @@ const createNewUser = async function(username, password) {
       entryList: []
     });
     assert.equal(1, r.insertedCount);
-    return 'New user successfully created!';
+    return 0;
+  } catch (err) {
+    console.log(err.stack);
+  }
+
+  // Close connection
+  client.close();
+};
+
+const retrieveUser = async function(username, password) {
+  let foundUser = false;
+  let client;
+  // 1. Check if username exists in db
+  try {
+    client = await MongoClient.connect(url);
+    console.log('Connected correctly to server');
+
+    const db = client.db(dbName);
+
+    // Get the collection
+    const col = db.collection(USER_COLLECTION);
+
+    // Get first two documents that match the query
+    const docs = await col.find({ userName: username }).toArray();
+    //assert.equal(2, docs.length);
+    if (docs.length === 0) {
+      return 1;
+    }
+    if (docs[0].password !== password) {
+      return 2;
+    }
+
+    return docs[0];
   } catch (err) {
     console.log(err.stack);
   }
@@ -54,5 +86,6 @@ const createNewUser = async function(username, password) {
 };
 
 module.exports = {
-  createUser: createNewUser
+  createUser: createNewUser,
+  retrieveUser: retrieveUser
 };

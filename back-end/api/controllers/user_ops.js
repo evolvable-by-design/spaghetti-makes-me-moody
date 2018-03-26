@@ -25,7 +25,8 @@ const mongoIF = require('../helpers/mongoInterface');
   we specify that in the exports of this module that 'hello' maps to the function named 'hello'
  */
 module.exports = {
-  createUser: createNewUser
+  createUser: createNewUser,
+  retrieveUser: retrieveUser
 };
 
 /*
@@ -41,8 +42,34 @@ function createNewUser(req, res) {
   (async function() {
     try {
       let isCreated = await mongoIF.createUser(userName, password);
-      console.log(isCreated);
-      res.json(isCreated);
+      if (isCreated === 1) {
+        res.status(400).json('User name already exists!');
+      } else {
+        res.status(201).json('User created successfully!');
+      }
+    } catch (err) {
+      console.log(err.stack);
+    }
+  })();
+}
+
+function retrieveUser(req, res) {
+  var userName = req.swagger.params.userName.value;
+  var password = req.swagger.params.password.value;
+
+  (async function() {
+    try {
+      let isFound = await mongoIF.retrieveUser(userName, password);
+      if (isFound === 2) {
+        res.status(401).json('Password is incorrect!');
+      } else if (isFound === 1) {
+        res.status(400).json('User not found!');
+      } else {
+        res.json({
+          message: 'User retrieved successfully!',
+          data: isFound
+        });
+      }
     } catch (err) {
       console.log(err.stack);
     }

@@ -38,10 +38,54 @@ paths:
           type: string
       responses:
         "201":
+          description: User creation success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/genericResponse"
+        "400":
+          description: User name already exists
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ErrorResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /retrieveUser/{userName}/password/{password}:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: user_ops
+    get:
+      description: Retrieve an existing user
+      # used as the method name of the controller
+      operationId: retrieveUser
+      parameters:
+        - name: userName
+          in: path
+          description: The existing username
+          required: true
+          type: string
+        - name: password
+          in: path
+          description: The existing password
+          required: true
+          type: string
+      responses:
+        "200":
           description: Success
           schema:
             # a pointer to a definition
-            $ref: "#/definitions/createUserResponse"
+            $ref: "#/definitions/genericResponse"
+        "400":
+          description: User name does not exist
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ErrorResponse"
+        "401":
+          description: Password incorrect
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ErrorResponse"
         # responses may fall through to errors
         default:
           description: Error
@@ -51,7 +95,7 @@ paths:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
 definitions:
-  createUserResponse:
+  genericResponse:
     required:
       - message
     properties:
