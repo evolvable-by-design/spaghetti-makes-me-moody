@@ -14,94 +14,78 @@ const dbName = 'moody-spaghetti';
 
 // TODO: Setup some real collections to handle users
 
-// ***************************************************************************
-// START - Example code for using mongo **************************************
-// ***************************************************************************
-const insertDocuments = function(db, callback) {
-  // Get the documents collection
-  const collection = db.collection('documents');
-  // Insert some documents
-  collection.insertMany([{ a: 1 }, { a: 2 }, { a: 3 }], function(err, result) {
-    assert.equal(err, null);
-    assert.equal(3, result.result.n);
-    assert.equal(3, result.ops.length);
-    console.log('Inserted 3 documents into the collection');
-    callback(result);
-  });
-};
+const USER_COLLECTION = 'users';
 
-const findDocuments = function(db, callback) {
-  // Get the documents collection
-  const collection = db.collection('documents');
-  // Find some documents
-  collection.find({}).toArray(function(err, docs) {
-    assert.equal(err, null);
-    console.log('Found the following records');
-    console.log(docs);
-    callback(docs);
-  });
-};
+// Create a new user
+const createNewUser = async function(username, password) {
+  let foundUser = false;
+  let client;
+  // 1. Check if username exists in db
+  try {
+    client = await MongoClient.connect(url);
+    console.log('Connected correctly to server');
 
-const updateDocument = function(db, callback) {
-  // Get the documents collection
-  const collection = db.collection('documents');
-  // Update document where a is 2, set b equal to 1
-  collection.updateOne({ a: 2 }, { $set: { b: 1 } }, function(err, result) {
-    assert.equal(err, null);
-    assert.equal(1, result.result.n);
-    console.log('Updated the document with the field a equal to 2');
-    callback(result);
-  });
-};
-
-const removeDocument = function(db, callback) {
-  // Get the documents collection
-  const collection = db.collection('documents');
-  // Delete document where a is 3
-  collection.deleteOne({ a: 3 }, function(err, result) {
-    assert.equal(err, null);
-    assert.equal(1, result.result.n);
-    console.log('Removed the document with the field a equal to 3');
-    callback(result);
-  });
-};
-
-const dropCollection = function(db, callback) {
-  const collection = db.collection('documents');
-  // Drop the entire collection (something we probably will rarely want to do,
-  // but it's here for a example and so when we run this code as is, the
-  // database stays clean
-  collection.drop(function(err, result) {
-    assert.equal(err, null);
-    console.log('Successfully removed the dummy collection.');
-    callback(result);
-  });
-};
-
-// Use connect method to connect to the server
-const mongoHelloWorld = function() {
-  MongoClient.connect(url, function(err, client) {
-    assert.equal(null, err);
-    console.log('Connected successfully to server');
     const db = client.db(dbName);
-    // Currently nesting a bunch of functions just as an example
-    insertDocuments(db, function() {
-      findDocuments(db, function() {
-        updateDocument(db, function() {
-          removeDocument(db, function() {
-            dropCollection(db, function() {
-              client.close();
-            });
-          });
-        });
-      });
+
+    // Get the collection
+    const col = db.collection(USER_COLLECTION);
+
+    // Get first two documents that match the query
+    const docs = await col.find({ userName: username }).toArray();
+    //assert.equal(2, docs.length);
+    if (docs.length > 0) {
+      return 1;
+    }
+
+    // Name doesn't exist so insert the user into the db
+    let r = await col.insertOne({
+      userName: username,
+      password: password,
+      entryList: []
     });
-  });
+    assert.equal(1, r.insertedCount);
+    return 0;
+  } catch (err) {
+    console.log(err.stack);
+  }
+
+  // Close connection
+  client.close();
 };
-// ***************************************************************************
-// END - Example code for using mongo **************************************
-// ***************************************************************************
+
+const retrieveUser = async function(username, password) {
+  let foundUser = false;
+  let client;
+  // 1. Check if username exists in db
+  try {
+    client = await MongoClient.connect(url);
+    console.log('Connected correctly to server');
+
+    const db = client.db(dbName);
+
+    // Get the collection
+    const col = db.collection(USER_COLLECTION);
+
+    // Get first two documents that match the query
+    const docs = await col.find({ userName: username }).toArray();
+    //assert.equal(2, docs.length);
+    if (docs.length === 0) {
+      return 1;
+    }
+    if (docs[0].password !== password) {
+      return 2;
+    }
+
+    return docs[0];
+  } catch (err) {
+    console.log(err.stack);
+  }
+
+  // Close connection
+  client.close();
+};
 
 module.exports = {
-  mongoIFTest: mongoHelloWorld
+  createUser: createNewUser,
+  retrieveUser: retrieveUser
 };
