@@ -63,7 +63,7 @@ function retrieveUser(req, res) {
       if (isFound === 2) {
         res.status(401).json('Password is incorrect!');
       } else if (isFound === 1) {
-        res.status(400).json('User not found!');
+        res.status(404).json('User not found!');
       } else {
         res.json({
           message: 'User retrieved successfully!',
