@@ -84,8 +84,8 @@ function updateUser(req, res) {
 
   (async function() {
     try {
-      let isCreated = await mongoIF.createUser(userName, password);
-      if (isCreated === 1) {
+      let isUpdated = await mongoIF.updateUser(userName, password, entry);
+      if (isUpdated === 1) {
         res.status(404).json('User not found!');
       } else {
         res.status(201).json('User updated successfully!');

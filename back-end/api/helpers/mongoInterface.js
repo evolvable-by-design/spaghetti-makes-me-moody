@@ -115,12 +115,17 @@ const updateUser = async function(username, password, entry){
     // return 0;
 
     //Update the entrylist of the User
-    let r = await col.updateOne({
-      entrylist: dos[0].entryList.append(entry)
-    });
+    // let r = await col.update({
+    //   entrylist: docs[0].entryList.unshift(entry)
+    // });
     
-    assert.equal(1, r.updateCount);
-    return 0;
+    // assert.equal(1, r.updateCount);
+    // return 0;
+
+    docs[0].entryList.unshift(entry)
+    let r = await col.update({
+      entrylist: docs.entryList
+    });
   } catch (err) {
     console.log(err.stack);
   }
