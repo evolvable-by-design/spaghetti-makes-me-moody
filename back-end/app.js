@@ -17,5 +17,9 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
   swaggerExpress.register(app);
 
   var port = process.env.PORT || 10010;
-  app.listen(port);
+  var server = app.listen(port);
+
+  var host =
+    server.address().address === '::' ? 'localhost' : server.address().address;
+  console.log('Spaghetti back-end is running at http://' + host + ':' + port);
 });
