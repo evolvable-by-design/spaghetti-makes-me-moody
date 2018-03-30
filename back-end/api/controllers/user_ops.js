@@ -27,7 +27,8 @@ const mongoIF = require('../helpers/mongoInterface');
 module.exports = {
   createUser: createNewUser,
   retrieveUser: retrieveUser,
-  updateUser: updateUser
+  updateUser: updateUser,
+  deleteEntry: deleteEntry
 };
 
 /*
@@ -89,6 +90,31 @@ function updateUser(req, res) {
         res.status(404).json('User not found!');
       } else {
         res.status(201).json('User updated successfully!');
+      }
+    } catch (err) {
+      console.log(err.stack);
+    }
+  })();
+}
+
+function deleteEntry(req, res) {
+  var userName = req.swagger.params.userName.value;
+  var password = req.swagger.params.password.value;
+  var entryIndex = req.swagger.params.entryIndex.value;
+
+  (async function() {
+    try {
+      let isDeleted = await mongoIF.deleteEntryAtIndex(
+        userName,
+        password,
+        entryIndex
+      );
+      if (isDeleted === 1) {
+        res.status(404).json('User not found!');
+      } else {
+        res
+          .status(200)
+          .json('User entry at index ' + entryIndex + ' deleted successfully!');
       }
     } catch (err) {
       console.log(err.stack);

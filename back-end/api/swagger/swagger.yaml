@@ -133,6 +133,45 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /deleteEntry/{userName}/password/{password}/entryIndex/{entryIndex}:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: user_ops
+    delete:
+      description: Deletes a user entry at given array index
+      # used as the method name of the controller
+      operationId: deleteEntry
+      parameters:
+        - name: userName
+          in: path
+          description: The needed username
+          required: true
+          type: string
+        - name: password
+          in: path
+          description: The needed password
+          required: true
+          type: string
+        - name: entryIndex
+          in: path
+          description: Array index of the entry to be deleted
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: The entry at index was deleted successfully.
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/genericResponse"
+        "404":
+          description: User not found!
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ErrorResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
