@@ -18,6 +18,34 @@ consumes:
 produces:
   - application/json
 paths:
+  /analyzeText/:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: analysis
+    post:
+      description: Get analysis data and feedback for given text
+      operationId: analyzeEntry
+      parameters:
+        - name: text
+          in: body
+          description: the text entry to be analyzed
+          required: true
+          schema:
+            $ref: "#/definitions/analyzeEntry"
+      responses:
+        "200":
+          description: Text analysis success
+          schema:
+            $ref: "#/definitions/entryAnalysis"
+        "400":
+          description: Error
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ErrorResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /createUser/{userName}/password/{password}:
     # binds a127 app logic to a route
     x-swagger-router-controller: user_ops
@@ -189,3 +217,32 @@ definitions:
     properties:
       message:
         type: string
+  analyzeEntry:
+    required:
+      - text
+    properties:
+      text:
+        type: string
+  entryAnalysis:
+    required:
+      - message
+      - data
+    properties:
+      message:
+        type: string
+      data:
+        type: object
+        properties: 
+          date:
+            type: string
+          entry:
+            type: string
+          sentimentData:
+            type: object
+            properties:
+              feelingScore:
+                type: integer
+              feedback:
+                type: string
+          classificationData:
+            type: string
