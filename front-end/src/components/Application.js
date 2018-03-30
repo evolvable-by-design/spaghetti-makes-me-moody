@@ -17,18 +17,26 @@ class Application extends React.Component {
 
     this.state = {
       loggedIn: false,
+      username: '',
+      password: '',
       view: 'Journal',
       // Eventually this will load the data for the current user
       historyData: []
     };
 
     this.handleViewChange = this.handleViewChange.bind(this);
+    this.handleLoginSuccess = this.handleLoginSuccess.bind(this);
     this.setHistoryData = this.setHistoryData.bind(this);
   }
 
   handleViewChange(viewString) {
-    console.log(viewString);
     this.setState({ view: viewString });
+  }
+
+  handleLoginSuccess(setUsername, setPassword) {
+    this.setState({ username: setUsername });
+    this.setState({ password: setPassword });
+    this.setState({ loggedIn: true });
   }
 
   setHistoryData(data) {
@@ -50,6 +58,7 @@ class Application extends React.Component {
             <MainView
               state={this.state}
               changeView={this.handleViewChange}
+              handleLoginSuccess = {this.handleLoginSuccess}
               setHistoryData={this.setHistoryData}
             />
           </div>
@@ -75,7 +84,10 @@ function MainView(props) {
   } else if (viewType === 'Overall') {
     return <OverallView />;
   } else if (viewType === 'Login') {
-    return <LoginOverallView />;
+    return <LoginOverallView
+            changeView={props.changeView}
+            handleLoginSuccess = {props.handleLoginSuccess}
+           />;
   } else {
     return;
   }

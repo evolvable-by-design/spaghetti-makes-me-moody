@@ -3,6 +3,8 @@ import './SignUpView.css';
 import './SubmitButton.css';
 import './DynamicCheckMark.css';
 
+import { createUser } from './SpaghettiService'
+
 // password / username validation setup
 var passwordValidator = require('./PasswordValidator');
 var passSchema = passwordValidator.passSchema;
@@ -25,6 +27,8 @@ class SignUpView extends React.Component {
                   passwordOk: false,
                   passwordRField: '',
                   passwordROk: false,
+                  showAlert: false,
+                  alertMessage: ''
                  };
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -34,12 +38,18 @@ class SignUpView extends React.Component {
   }
 
   userSignUp() {
-    // for now, just output the input to log as test
-    console.log(`Sign up success! Sending request with username: ${this.state.usernameField}, password: ${this.state.passwordField}`);
-  }
-
-  cancel() {
-
+    var object = this
+    createUser(this.state.usernameField, this.state.passwordField, function(responseCode) {
+      if (responseCode === 201) {
+        object.props.changeLoginView('Login');
+      } else if (responseCode === 400)  {
+        object.setState({alertMessage: 'Username already exists! Please choose a different one'});
+        object.setState({showAlert: true});
+      } else {
+        object.setState({alertMessage: 'Error in signing up, please try again!'});
+        object.setState({showAlert: true});
+      }
+    })
   }
 
   handleUsernameChange(event) {
@@ -177,23 +187,43 @@ class SignUpView extends React.Component {
               </div>
             </div>
           </div>
-          <button type="submit"
-                  class="SubmitButton"
-                  style={buttonLayoutStyle}
-                  onClick={() => {
-                    this.props.changeLoginView('Login');
-                  }}>
-                  cancel
-          </button>
-          <button type="submit"
-                  class="SubmitButton"
-                  style={buttonLayoutStyle}
-                  onClick={this.userSignUp}
-                  disabled={!this.state.usernameOk || !this.state.passwordOk|| !this.state.passwordROk}>
-                  submit
-          </button>
+          <AlertBox
+            state={this.state}
+          />
+          <div>
+            <button type="submit"
+                    class="SubmitButton"
+                    style={buttonLayoutStyle}
+                    onClick={() => {
+                      this.props.changeLoginView('Login');
+                    }}>
+                    cancel
+            </button>
+            <button type="submit"
+                    class="SubmitButton"
+                    style={buttonLayoutStyle}
+                    onClick={this.userSignUp}
+                    disabled={!this.state.usernameOk || !this.state.passwordOk|| !this.state.passwordROk}>
+                    submit
+            </button>
+          </div>
         </div>
     );
+  }
+}
+
+
+function AlertBox(props) {
+  const showAlert = props.state.showAlert;
+  const alertMessage = props.state.alertMessage;
+  if (showAlert) {
+    return (
+      <div class="SignUpAlertBox">
+        <p class="SignUpAlertBoxText">{alertMessage}</p>
+      </div>
+    );
+  } else {
+    return (null);
   }
 }
 

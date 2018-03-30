@@ -54,6 +54,38 @@
   border-top: 5px dashed #8c8c8c;
 }
 
+@import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
+
+.SignUpAlertBox {
+  -webkit-box-shadow: 3px 0 white, -3px 0 white, 0 -3px white, 0 3px white,
+    6px 0 white, -6px 0 white, 0 -6px white, 0 6px white, 0 0 0 3px white,
+    9px 0 black, -9px 0 black, 0 9px black, 0 -9px black, 0 -3px 0 3px black,
+    0 3px 0 3px black, 3px 0 0 3px black, -3px 0 0 3px black;
+  box-shadow: 3px 0 white, -3px 0 white, 0 -3px white, 0 3px white, 6px 0 white,
+    -6px 0 white, 0 -6px white, 0 6px white, 0 0 0 3px white, 9px 0 black,
+    -9px 0 black, 0 9px black, 0 -9px black, 0 -3px 0 3px black, 0 3px 0 3px black,
+    3px 0 0 3px black, -3px 0 0 3px black;
+  margin: 1em 0em 3em 0em;
+  padding: 0em 0.6em;
+  font: 0.7em 'Press start 2P';
+  font-weight: 200;
+  line-height: 160%;
+  max-width: 300px;
+  width: 60vw;
+  height: auto;
+  position: relative;
+  text-align: center;
+  display: inline-block;
+  background: white;
+  word-wrap: break-word;
+
+}
+
+.SignUpAlertBoxText {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 @media screen and (max-width: 890px) {
   .SignUpBodyText {
     font: normal 30px/1 'VT323', Helvetica, sans-serif;
@@ -61,6 +93,15 @@
   .SignUpBodyTextInput {
     font-size: 14px;
     width: 75%;
+  }
+  .SignUpAlertBox {
+    font: 0.65em 'Press start 2P';
+    line-height: 150%;
+    width: 60vw;
+  }
+  .SignUpAlertBoxText {
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
 }
 
@@ -74,5 +115,14 @@
   .SignUpBodyTextInput {
     font-size: 10px;
     width: 70%;
+  }
+  .SignUpAlertBox {
+    font: 0.5em 'Press start 2P';
+    line-height: 140%;
+    width: 60vw;
+  }
+  .SignUpAlertBoxText {
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
 }

@@ -11,5 +11,11 @@ userSchema
 .is().max(30)                                   // Maximum length 30
 .has().not().spaces()                           // Should not have spaces
 
+var loginPassSchema = new passwordValidator();
+loginPassSchema
+.is().min(1)                                    // Minimum length 1
+.has().not().spaces()                           // Should not have spaces
+
 exports.passSchema = passSchema;
 exports.userSchema = userSchema;
+exports.loginPassSchema = loginPassSchema;

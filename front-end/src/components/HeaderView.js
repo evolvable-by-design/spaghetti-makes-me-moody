@@ -25,16 +25,9 @@ const ButtonLayoutStyle = {
 class HeaderView extends React.Component {
   constructor(props) {
     super(props);
-    var thirdTitle = 'Login'
-    if (props.state.loggedIn) {
-      thirdTitle = 'Overall'
-    } else {
-      thirdTitle = 'Login'
-    }
 
     this.state = {
-      menuOpen: false,
-      thirdButtonTitle: thirdTitle
+      menuOpen: false
     };
   }
 
@@ -43,6 +36,14 @@ class HeaderView extends React.Component {
       this.setState({ menuOpen: false });
       this.props.onViewButtonClick(dest);
     }, 200);
+  }
+
+  thirdButtonTitle() {
+    if (this.props.state.loggedIn) {
+      return 'Overall'
+    } else {
+      return 'Login'
+    }
   }
 
   render() {
@@ -77,13 +78,13 @@ class HeaderView extends React.Component {
                 History
               </button>
               <button
-                id={this.state.thirdButtonTitle}
+                id={this.thirdButtonTitle()}
                 className="menu-item"
                 onClick={() => {
-                  this.closeMenu(this.state.thirdButtonTitle);
+                  this.closeMenu(this.thirdButtonTitle());
                 }}
               >
-                {this.state.thirdButtonTitle}
+                {this.thirdButtonTitle()}
               </button>
             </Menu>
           </div>
@@ -122,10 +123,10 @@ class HeaderView extends React.Component {
             <button
               class="TabButton"
               onClick={() => {
-                this.props.onViewButtonClick(this.state.thirdButtonTitle);
+                this.props.onViewButtonClick(this.thirdButtonTitle());
               }}
             >
-              {this.state.thirdButtonTitle}
+              {this.thirdButtonTitle()}
             </button>
           </div>
         </div>

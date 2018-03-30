@@ -4,9 +4,11 @@ import './SubmitButton.css';
 import './SignUpButton.css';
 import './DynamicCheckMark.css';
 
+import { retrieveUser } from './SpaghettiService'
+
 // password / username validation setup
 var passwordValidator = require('./PasswordValidator');
-var passSchema = passwordValidator.passSchema;
+var passSchema = passwordValidator.loginPassSchema;
 var userSchema = passwordValidator.userSchema;
 
 const buttonColumnStyle = {
@@ -38,6 +40,8 @@ class LoginView extends React.Component {
                   usernameOk: false,
                   passwordField: '',
                   passwordOk: false,
+                  showAlert: false,
+                  alertMessage: ''
                  };
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -46,6 +50,22 @@ class LoginView extends React.Component {
   }
 
   login() {
+    var object = this
+    retrieveUser(this.state.usernameField, this.state.passwordField, function(responseCode) {
+      if (responseCode === 200) {
+        object.props.handleLoginSuccess(object.state.usernameField, object.state.passwordField);
+        object.props.changeView('Journal');
+      } else if (responseCode === 404){
+        object.setState({alertMessage: 'Username does not exist!'});
+        object.setState({showAlert: true});
+      } else if (responseCode === 401){
+        object.setState({alertMessage: 'Password Incorrect!'});
+        object.setState({showAlert: true});
+      } else {
+        object.setState({alertMessage: 'Error in logging in, please try again!'});
+        object.setState({showAlert: true});
+      }
+    })
   }
 
   handleUsernameChange(event) {
@@ -124,9 +144,26 @@ class LoginView extends React.Component {
                      value={this.state.passwordField}
                      onChange={this.handlePasswordChange}
               required />
+              <div class='SignUpFieldsCheckMarkLayoutStyle'>
+                <div class="colorful-switch">
+                <input type="checkbox" class="colorful-switch__checkbox" id="colorful-switch-cb2"
+                       checked={this.state.passwordOk}/>
+                <label class="colorful-switch__label" for="colorful-switch-cb1">
+                  <span class="colorful-switch__bg"></span>
+                  <span class="colorful-switch__dot"></span>
+                  <span class="colorful-switch__on">
+                    <span class="colorful-switch__on__inner"></span>
+                  </span>
+                  <span class="colorful-switch__off"></span>
+                </label>
+                </div>
+              </div>
             </div>
 
           </div>
+            <AlertBox
+              state={this.state}
+            />
             <div style={buttonColumnStyle}>
               <button type="submit"
                       class="SubmitButton"
@@ -148,6 +185,20 @@ class LoginView extends React.Component {
             </div>
         </div>
     );
+  }
+}
+
+function AlertBox(props) {
+  const showAlert = props.state.showAlert;
+  const alertMessage = props.state.alertMessage;
+  if (showAlert) {
+    return (
+      <div class="SignUpAlertBox">
+        <p class="SignUpAlertBoxText">{alertMessage}</p>
+      </div>
+    );
+  } else {
+    return (null);
   }
 }
 
