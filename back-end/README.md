@@ -43,6 +43,48 @@ spaghetti-back-end
 | 401 | Password incorrect | [ErrorResponse](#errorresponse) |
 | default | Error | [ErrorResponse](#errorresponse) |
 
+### /updateUser/{userName}/password/{password}
+---
+##### ***POST***
+**Description:** Update user
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| userName | path | The needed username | Yes | string |
+| password | path | The needed password | Yes | string |
+| body | body | Entry to be added | Yes | object |
+
+**Responses**
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 201 | User updated successfully! | [genericResponse](#genericresponse) |
+| 404 | User not found! | [ErrorResponse](#errorresponse) |
+| default | Error | [ErrorResponse](#errorresponse) |
+
+### /deleteEntry/{userName}/password/{password}/entryIndex/{entryIndex}
+---
+##### ***DELETE***
+**Description:** Deletes a user entry at given array index
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| userName | path | The needed username | Yes | string |
+| password | path | The needed password | Yes | string |
+| entryIndex | path | Array index of the entry to be deleted | Yes | integer |
+
+**Responses**
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | The entry at index was deleted successfully. | [genericResponse](#genericresponse) |
+| 404 | User not found! | [ErrorResponse](#errorresponse) |
+| default | Error | [ErrorResponse](#errorresponse) |
+
 ### /swagger
 ---
 ### Models
