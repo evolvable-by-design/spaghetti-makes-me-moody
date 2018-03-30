@@ -26,6 +26,7 @@ class Application extends React.Component {
 
     this.handleViewChange = this.handleViewChange.bind(this);
     this.handleLoginSuccess = this.handleLoginSuccess.bind(this);
+    this.handleSignUpSuccess = this.handleSignUpSuccess.bind(this);
     this.setHistoryData = this.setHistoryData.bind(this);
   }
 
@@ -37,6 +38,10 @@ class Application extends React.Component {
     this.setState({ username: setUsername });
     this.setState({ password: setPassword });
     this.setState({ loggedIn: true });
+  }
+
+  handleSignUpSuccess(setUsername, setPassword) {
+    console.log(this.historyData);
   }
 
   setHistoryData(data) {
@@ -59,6 +64,7 @@ class Application extends React.Component {
               state={this.state}
               changeView={this.handleViewChange}
               handleLoginSuccess = {this.handleLoginSuccess}
+              handleSignUpSuccess = {this.handleSignUpSuccess}
               setHistoryData={this.setHistoryData}
             />
           </div>
@@ -87,6 +93,7 @@ function MainView(props) {
     return <LoginOverallView
             changeView={props.changeView}
             handleLoginSuccess = {props.handleLoginSuccess}
+            handleSignUpSuccess = {props.handleSignUpSuccess}
            />;
   } else {
     return;

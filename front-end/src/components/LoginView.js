@@ -61,6 +61,8 @@ class LoginView extends React.Component {
       } else if (responseCode === 401){
         object.setState({alertMessage: 'Password Incorrect!'});
         object.setState({showAlert: true});
+      } else if (responseCode === 204) {
+        return
       } else {
         object.setState({alertMessage: 'Error in logging in, please try again!'});
         object.setState({showAlert: true});

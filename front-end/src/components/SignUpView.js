@@ -40,11 +40,15 @@ class SignUpView extends React.Component {
   userSignUp() {
     var object = this
     createUser(this.state.usernameField, this.state.passwordField, function(responseCode) {
+      console.log(responseCode);
       if (responseCode === 201) {
+        object.props.handleSignUpSuccess();
         object.props.changeLoginView('Login');
       } else if (responseCode === 400)  {
         object.setState({alertMessage: 'Username already exists! Please choose a different one'});
         object.setState({showAlert: true});
+      } else if (responseCode === 204) {
+        return
       } else {
         object.setState({alertMessage: 'Error in signing up, please try again!'});
         object.setState({showAlert: true});

@@ -46,6 +46,7 @@ function MainView(props) {
     return (
       <SignUpView
         changeLoginView={props.changeLoginView}
+        handleSignUpSuccess = {props.handleSignUpSuccess}
       />
     );
   } else {
