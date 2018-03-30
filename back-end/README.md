@@ -46,7 +46,7 @@ spaghetti-back-end
 ### /updateUser/{userName}/password/{password}
 ---
 ##### ***POST***
-**Description:** Update user
+**Description:** Takes a JSON object in the request body, and adds it to thefront of the 'entryList' field. Currently accepts any valid JSON object.
 
 **Parameters**
 

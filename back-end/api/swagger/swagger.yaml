@@ -95,7 +95,8 @@ paths:
     # binds a127 app logic to a route
     x-swagger-router-controller: user_ops
     post:
-      description: Update user
+      description: "Takes a JSON object in the request body, and adds it to the\
+      front of the 'entryList' field. Currently accepts any valid JSON object."
       consumes:
         - application/json
       # used as the method name of the controller
