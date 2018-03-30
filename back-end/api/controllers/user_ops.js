@@ -26,7 +26,8 @@ const mongoIF = require('../helpers/mongoInterface');
  */
 module.exports = {
   createUser: createNewUser,
-  retrieveUser: retrieveUser
+  retrieveUser: retrieveUser,
+  updateUser: updateUser
 };
 
 /*
@@ -69,6 +70,25 @@ function retrieveUser(req, res) {
           message: 'User retrieved successfully!',
           data: isFound
         });
+      }
+    } catch (err) {
+      console.log(err.stack);
+    }
+  })();
+}
+
+function updateUser(req, res) {
+  var userName = req.swagger.params.userName.value;
+  var password = req.swagger.params.password.value;
+  var entry = req.swagger.params.body.value;
+
+  (async function() {
+    try {
+      let isUpdated = await mongoIF.updateUser(userName, password, entry);
+      if (isUpdated === 1) {
+        res.status(404).json('User not found!');
+      } else {
+        res.status(201).json('User updated successfully!');
       }
     } catch (err) {
       console.log(err.stack);

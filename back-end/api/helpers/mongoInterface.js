@@ -32,7 +32,6 @@ const createNewUser = async function(username, password) {
 
     // Get first two documents that match the query
     const docs = await col.find({ userName: username }).toArray();
-    //assert.equal(2, docs.length);
     if (docs.length > 0) {
       return 1;
     }
@@ -44,13 +43,15 @@ const createNewUser = async function(username, password) {
       entryList: []
     });
     assert.equal(1, r.insertedCount);
+    console.log('Successfully created user: ', username);
     return 0;
   } catch (err) {
     console.log(err.stack);
+  } finally {
+    // Close connection
+    client.close();
+    console.log('Mongo server connection closed.');
   }
-
-  // Close connection
-  client.close();
 };
 
 const retrieveUser = async function(username, password) {
@@ -68,7 +69,6 @@ const retrieveUser = async function(username, password) {
 
     // Get first two documents that match the query
     const docs = await col.find({ userName: username }).toArray();
-    //assert.equal(2, docs.length);
     if (docs.length === 0) {
       return 1;
     }
@@ -76,16 +76,63 @@ const retrieveUser = async function(username, password) {
       return 2;
     }
 
+    console.log('Successfully retrieved user: ', username);
     return docs[0];
   } catch (err) {
     console.log(err.stack);
+  } finally {
+    // Close connection
+    client.close();
+    console.log('Mongo server connection closed.');
   }
+};
 
-  // Close connection
-  client.close();
+const updateUser = async function(username, password, entry) {
+  let foundUser = false;
+  let client;
+
+  try {
+    client = await MongoClient.connect(url);
+    console.log('Connected correctly to server');
+
+    const db = client.db(dbName);
+
+    // Get the collection
+    const col = db.collection(USER_COLLECTION);
+
+    // Get first two documents that match the query
+    const docs = await col.find({ userName: username }).toArray();
+    if (docs.length < 1) {
+      return 1;
+    }
+
+    // Use mongo specific syntax to update
+    let r = await col.updateOne(
+      { userName: username },
+      {
+        $push: {
+          entryList: {
+            $each: [entry],
+            $position: 0
+          }
+        }
+      }
+    );
+    // Sanity check that we actually updated something
+    assert.equal(1, r.modifiedCount);
+    console.log('Successfully added entry to user: ', username);
+    return 0;
+  } catch (err) {
+    console.log(err.stack);
+  } finally {
+    // Close connection
+    client.close();
+    console.log('Mongo server connection closed.');
+  }
 };
 
 module.exports = {
   createUser: createNewUser,
-  retrieveUser: retrieveUser
+  retrieveUser: retrieveUser,
+  updateUser: updateUser
 };

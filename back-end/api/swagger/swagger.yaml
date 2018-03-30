@@ -91,6 +91,48 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /updateUser/{userName}/password/{password}:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: user_ops
+    post:
+      description: Update user
+      consumes:
+        - application/json
+      # used as the method name of the controller
+      operationId: updateUser
+      parameters:
+        - name: userName
+          in: path
+          description: The needed username
+          required: true
+          type: string
+        - name: password
+          in: path
+          description: The needed password
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: Entry to be added
+          required: true
+          schema:
+            type: object
+      responses:
+        "201":
+          description: User updated successfully!
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/genericResponse"
+        "404":
+          description: User not found!
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ErrorResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
