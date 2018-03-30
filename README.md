@@ -20,7 +20,7 @@
 
 ## Back-end server Instructions
 
-### To run the server (defaults to port 10100)
+### To run the server (defaults to port 10010)
 
 1.  `cd back-end`
 2.  `npm install`
