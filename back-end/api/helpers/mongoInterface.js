@@ -9,28 +9,24 @@ const assert = require('assert');
 const url =
   'mongodb://pasta-fan:givemesauce@ds117749.mlab.com:17749/moody-spaghetti';
 
-// Database Name
 const dbName = 'moody-spaghetti';
-
-// TODO: Setup some real collections to handle users
 
 const USER_COLLECTION = 'users';
 
 // Create a new user
 const createNewUser = async function(username, password) {
-  let foundUser = false;
   let client;
-  // 1. Check if username exists in db
+
   try {
     client = await MongoClient.connect(url);
-    console.log('Connected correctly to server');
+    console.log('Connected correctly to mongodb server');
 
     const db = client.db(dbName);
 
     // Get the collection
     const col = db.collection(USER_COLLECTION);
 
-    // Get first two documents that match the query
+    // Check if user exists
     const docs = await col.find({ userName: username }).toArray();
     if (docs.length > 0) {
       return 1;
@@ -55,19 +51,18 @@ const createNewUser = async function(username, password) {
 };
 
 const retrieveUser = async function(username, password) {
-  let foundUser = false;
   let client;
-  // 1. Check if username exists in db
+
   try {
     client = await MongoClient.connect(url);
-    console.log('Connected correctly to server');
+    console.log('Connected correctly to mongodb server');
 
     const db = client.db(dbName);
 
     // Get the collection
     const col = db.collection(USER_COLLECTION);
 
-    // Get first two documents that match the query
+    // Check if user exists
     const docs = await col.find({ userName: username }).toArray();
     if (docs.length === 0) {
       return 1;
@@ -88,7 +83,6 @@ const retrieveUser = async function(username, password) {
 };
 
 const updateUser = async function(username, password, entry) {
-  let foundUser = false;
   let client;
 
   try {
@@ -100,7 +94,7 @@ const updateUser = async function(username, password, entry) {
     // Get the collection
     const col = db.collection(USER_COLLECTION);
 
-    // Get first two documents that match the query
+    // Check if user exists
     const docs = await col.find({ userName: username }).toArray();
     if (docs.length < 1) {
       return 1;
@@ -131,8 +125,51 @@ const updateUser = async function(username, password, entry) {
   }
 };
 
+const deleteEntryAtIndex = async function(username, password, entryIndex) {
+  let client;
+
+  try {
+    client = await MongoClient.connect(url);
+    console.log('Connected correctly to mongodb server');
+
+    const db = client.db(dbName);
+
+    // Get the collection
+    const col = db.collection(USER_COLLECTION);
+
+    // Check if user exists
+    const docs = await col.find({ userName: username }).toArray();
+    if (docs.length < 1) {
+      return 1;
+    }
+
+    // This is a hack, and it is NOT atomic, but apparently mongo doesn't have
+    // a proper way of remove array items by index. Currently they only support
+    // pop from the beginning or end of array
+    docs[0].entryList.splice(entryIndex, 1);
+    let r = await col.updateOne(
+      { userName: username },
+      {
+        $set: { entryList: docs[0].entryList }
+      }
+    );
+
+    // Sanity check that we actually updated something
+    assert.equal(1, r1.modifiedCount);
+    console.log('Successfully delete user entry at index: ', entryIndex);
+    return 0;
+  } catch (err) {
+    console.log(err.stack);
+  } finally {
+    // Close connection
+    client.close();
+    console.log('Mongo server connection closed.');
+  }
+};
+
 module.exports = {
   createUser: createNewUser,
   retrieveUser: retrieveUser,
-  updateUser: updateUser
+  updateUser: updateUser,
+  deleteEntryAtIndex: deleteEntryAtIndex
 };
