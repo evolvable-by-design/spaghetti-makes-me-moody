@@ -29,18 +29,19 @@ export class SpaghettiService {
 
 }
 
-export function createUser(username, password, callback) {
-  var url = baseUrl + '/createUser/' + username + '/password/' + password
+export function retrieveUser(username, password, callback) {
+  var url = baseUrl + '/retrieveUser/' + username + '/password/' + password;
   axios({
-      method: 'post',
-      url: url,
-      data: {},
-      headers: {
-          'Content-Type': 'application/json'
-      }
-    })
+    method: 'get',
+    url: url,
+    data: {},
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
     .then(function(response) {
-      callback(response.status);
+      console.log('Successfully called retrieve user');
+      callback(response);
     })
     .catch(function(error) {
       if (error.response) {
@@ -50,19 +51,26 @@ export function createUser(username, password, callback) {
       } else {
         callback(504);
       }
-    })
+    });
 }
 
-export function retrieveUser(username, password, callback) {
-  var url = baseUrl + '/retrieveUser/' + username + '/password/' + password
+export function deleteEntry(username, password, entryIndex, callback) {
+  var url =
+    baseUrl +
+    '/deleteEntry/' +
+    username +
+    '/password/' +
+    password +
+    '/entryIndex/' +
+    entryIndex;
   axios({
-      method: 'get',
-      url: url,
-      data: {},
-      headers: {
-          'Content-Type': 'application/json'
-      }
-    })
+    method: 'delete',
+    url: url,
+    data: {},
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
     .then(function(response) {
       callback(response.status);
     })
@@ -74,5 +82,5 @@ export function retrieveUser(username, password, callback) {
       } else {
         callback(504);
       }
-    })
+    });
 }
