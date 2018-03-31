@@ -85,6 +85,7 @@ function MainView(props) {
     return <OverallView />;
   } else if (viewType === 'Login') {
     return <LoginOverallView
+            historyData={props.state.historyData}
             changeView={props.changeView}
             handleLoginSuccess = {props.handleLoginSuccess}
            />;

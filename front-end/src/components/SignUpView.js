@@ -39,7 +39,7 @@ class SignUpView extends React.Component {
 
   userSignUp() {
     var object = this
-    createUser(this.state.usernameField, this.state.passwordField, function(responseCode) {
+    createUser(this.state.usernameField, this.state.passwordField, this.props.historyData, function(responseCode) {
       if (responseCode === 201) {
         object.props.changeLoginView('Login');
       } else if (responseCode === 400)  {

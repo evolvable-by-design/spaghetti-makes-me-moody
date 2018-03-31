@@ -1,12 +1,12 @@
 import axios from 'axios';
 var baseUrl = 'http://localhost:10010';
 
-export function createUser(username, password, callback) {
+export function createUser(username, password, historyData, callback) {
   var url = baseUrl + '/createUser/' + username + '/password/' + password
   axios({
       method: 'post',
       url: url,
-      data: {},
+      data: { historyData },
       headers: {
           'Content-Type': 'application/json'
       }

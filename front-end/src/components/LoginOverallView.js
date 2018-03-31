@@ -14,7 +14,6 @@ class LoginOverallView extends React.Component {
   }
 
   handleLoginViewChange(viewString) {
-    console.log(viewString);
     this.setState({ loginViewType: viewString });
   }
 
@@ -23,6 +22,7 @@ class LoginOverallView extends React.Component {
         <div>
           <MainView
             state={this.state}
+            historyData={this.props.historyData}
             changeView={this.props.changeView}
             changeLoginView={this.handleLoginViewChange}
             handleLoginSuccess = {this.props.handleLoginSuccess}
@@ -45,6 +45,7 @@ function MainView(props) {
   } else if (viewType === 'SignUp') {
     return (
       <SignUpView
+        historyData={props.historyData}
         changeLoginView={props.changeLoginView}
       />
     );
