@@ -149,7 +149,7 @@ const deleteEntryAtIndex = async function(username, password, entryIndex) {
       return 1;
     }
 
-    if (docs[0][entryIndex] === undefined) {
+    if (docs[0].entryList[entryIndex] === undefined) {
       return 1;
     }
 

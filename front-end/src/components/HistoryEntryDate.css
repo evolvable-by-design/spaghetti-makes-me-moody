@@ -6,16 +6,31 @@
   line-height: 1.6;
   text-align: center;
   margin: 10px 0px 0px 0px;
+  display: inline-block;
+}
+
+.trashCan-img {
+  width: 40px;
+  float: right;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 890px) {
   .HistoryEntryDate {
     font: 1em 'Press start 2P';
   }
+  .trashCan-img {
+    width: 25px;
+    display: inline-block !important;
+  }
 }
 
 @media screen and (max-width: 462px) {
   .HistoryEntryDate {
     font: 0.75em 'Press start 2P';
+  }
+  .trashCan-img {
+    width: 15px;
+    float: none !important;
   }
 }
