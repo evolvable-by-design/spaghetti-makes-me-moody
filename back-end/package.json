@@ -31,6 +31,7 @@
     "md-docs": "swagger-markdown -i api/swagger/swagger.yaml -o README.md"
   },
   "lint-staged": {
-    "**/*.{js,json}": ["prettier --single-quote --write", "git add"]
+    "**/*.{js,json}": ["prettier --single-quote --write", "git add"],
+    "api/**/*.{js,json}": ["prettier --single-quote --write", "git add"]
   }
 }
