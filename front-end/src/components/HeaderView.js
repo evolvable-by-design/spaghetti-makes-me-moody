@@ -29,12 +29,22 @@ class HeaderView extends React.Component {
     this.state = {
       menuOpen: false
     };
+
+    this.closeMenu = this.closeMenu.bind(this);
+    this.closeMenuLogout = this.closeMenuLogout.bind(this);
   }
 
   closeMenu(dest) {
     setTimeout(() => {
       this.setState({ menuOpen: false });
       this.props.onViewButtonClick(dest);
+    }, 200);
+  }
+
+  closeMenuLogout(dest) {
+    setTimeout(() => {
+      this.setState({ menuOpen: false });
+      this.props.handleLogout();
     }, 200);
   }
 
@@ -86,6 +96,10 @@ class HeaderView extends React.Component {
               >
                 {this.thirdButtonTitle()}
               </button>
+              <LogoutMenuButton
+                state={this.props.state}
+                handleLogout={this.closeMenuLogout}
+              />
             </Menu>
           </div>
           <img
@@ -128,10 +142,53 @@ class HeaderView extends React.Component {
             >
               {this.thirdButtonTitle()}
             </button>
+            <LogoutButton
+              state={this.props.state}
+              handleLogout={this.props.handleLogout}
+            />
           </div>
         </div>
       </div>
     );
+  }
+}
+
+class LogoutMenuButton extends React.Component {
+  render() {
+    if (this.props.state.loggedIn) {
+      return (
+        <button
+          id="Logout"
+          className="menu-item"
+          onClick={() => {
+            this.props.handleLogout();
+          }}
+        >
+          Logout
+        </button>
+      );
+    } else {
+      return (null);
+    }
+  }
+}
+
+class LogoutButton extends React.Component {
+  render() {
+    if (this.props.state.loggedIn) {
+      return (
+        <button
+          class="TabButton"
+          onClick={() => {
+            this.props.handleLogout();
+          }}
+        >
+          Logout
+        </button>
+      );
+    } else {
+      return (null);
+    }
   }
 }
 
