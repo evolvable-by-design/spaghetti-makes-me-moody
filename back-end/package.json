@@ -8,9 +8,10 @@
   "license": "ISC",
   "main": "app.js",
   "dependencies": {
+    "axios": "^0.18.0",
     "express": "^4.12.3",
-    "swagger-express-mw": "^0.1.0",
-    "mongodb": "^3.0.4"
+    "mongodb": "^3.0.4",
+    "swagger-express-mw": "^0.1.0"
   },
   "devDependencies": {
     "husky": "^0.14.3",
