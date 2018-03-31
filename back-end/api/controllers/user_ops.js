@@ -40,10 +40,11 @@ module.exports = {
 function createNewUser(req, res) {
   var userName = req.swagger.params.userName.value;
   var password = req.swagger.params.password.value;
+  var historyData = req.swagger.params.historyData.value;
 
   (async function() {
     try {
-      let isCreated = await mongoIF.createUser(userName, password);
+      let isCreated = await mongoIF.createUser(userName, password, historyData);
       if (isCreated === 1) {
         res.status(400).json('User name already exists!');
       } else {
