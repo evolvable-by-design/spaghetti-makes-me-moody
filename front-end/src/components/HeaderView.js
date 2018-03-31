@@ -40,9 +40,9 @@ class HeaderView extends React.Component {
 
   thirdButtonTitle() {
     if (this.props.state.loggedIn) {
-      return 'Overall'
+      return 'Overall';
     } else {
-      return 'Login'
+      return 'Login';
     }
   }
 
