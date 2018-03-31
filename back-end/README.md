@@ -24,7 +24,7 @@ spaghetti-back-end
 ### /createUser/{userName}/password/{password}
 ---
 ##### ***POST***
-**Description:** Create a new user
+**Description:** Create a new user, optionally setting their historyData ifsome has already been generated
 
 **Parameters**
 
@@ -32,6 +32,7 @@ spaghetti-back-end
 | ---- | ---------- | ----------- | -------- | ---- |
 | userName | path | The desired username | Yes | string |
 | password | path | The desired password | Yes | string |
+| historyData | body | A list of history data that the user has alreadygenerated before they signed up | No | object |
 
 **Responses**
 

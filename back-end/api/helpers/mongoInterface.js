@@ -14,7 +14,7 @@ const dbName = 'moody-spaghetti';
 const USER_COLLECTION = 'users';
 
 // Create a new user
-const createNewUser = async function(username, password) {
+const createNewUser = async function(username, password, historyData) {
   let client;
 
   try {
@@ -32,11 +32,17 @@ const createNewUser = async function(username, password) {
       return 1;
     }
 
+    // Apparently this is the best way to check object emptiness in js ?
+    let historyDataIsEmpty =
+      Object.keys(historyData).length === 0 &&
+      historyData.constructor === Object;
+    let entryList = historyDataIsEmpty ? [] : historyData.historyData;
+
     // Name doesn't exist so insert the user into the db
     let r = await col.insertOne({
       userName: username,
       password: password,
-      entryList: []
+      entryList: entryList
     });
     assert.equal(1, r.insertedCount);
     console.log('Successfully created user: ', username);
@@ -155,7 +161,7 @@ const deleteEntryAtIndex = async function(username, password, entryIndex) {
     );
 
     // Sanity check that we actually updated something
-    assert.equal(1, r1.modifiedCount);
+    assert.equal(1, r.modifiedCount);
     console.log('Successfully delete user entry at index: ', entryIndex);
     return 0;
   } catch (err) {

@@ -50,7 +50,10 @@ paths:
     # binds a127 app logic to a route
     x-swagger-router-controller: user_ops
     post:
-      description: Create a new user
+      description: "Create a new user, optionally setting their historyData if\
+      some has already been generated"
+      consumes:
+        - application/json
       # used as the method name of the controller
       operationId: createUser
       parameters:
@@ -64,6 +67,13 @@ paths:
           description: The desired password
           required: true
           type: string
+        - name: historyData
+          in: body
+          description: "A list of history data that the user has already\
+          generated before they signed up"
+          required: false
+          schema:
+            type: object
       responses:
         "201":
           description: User creation success
