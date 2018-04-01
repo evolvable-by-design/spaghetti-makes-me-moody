@@ -22,23 +22,10 @@ class HistoryView extends React.Component {
               state={this.props.state}
             />
             {this.props.state.historyData.map(function(listValue) {
-              let sentiment = sentimentFeedback(
-                listValue.sentimentData.documentSentiment
-              );
-              let classification = classificationFeedback(
-                listValue.classificationData
-              );
-              let feedbackObj = {
-                sentFeedback: sentiment.feedback,
-                sentScore: sentiment.feeling,
-                classFeedback: classification
-              };
               return (
                 <li>
                   <HistoryEntry
-                    date={listValue.date}
-                    data={feedbackObj}
-                    entry={listValue.entry}
+                    data={listValue}
                   />
                 </li>
               );

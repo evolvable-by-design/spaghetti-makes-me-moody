@@ -50,7 +50,7 @@ function analyzeEntry(req, res) {
       axios.spread(function(sentiment, classification) {
         let classData = classification
           ? textAnalyzer.classificationFeedback(classification.data)
-          : null;
+          : '';
         let sentData = sentiment
           ? textAnalyzer.sentimentFeedback(sentiment.data.documentSentiment)
           : null;
