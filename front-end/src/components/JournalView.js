@@ -59,22 +59,22 @@ class JournalView extends React.Component {
   handleSubmit(event) {
     var self = this;
     event.preventDefault();
-    analyzeText(
-      self.state.entryValue,
-      self.state.username,
-      self.state.password,
-      function(response) {
-        var status = response.status;
-        if (status !== 200 && status !== 201) {
-          console.log(status);
-          console.log('Something went wrong... TODO Error messaging for user');
-          return;
-        }
+    analyzeText(self.state.entryValue, self.state.username, self.state.password, function(response) {
+
+      if (typeof response === 'undefined') {
+        console.log("Something went wrong... TODO Error messaging for user");
+        return;
+      }
+
+      if (response.status === 200 || response.status === 201) {
         self.props.setHistoryData(response.data.data);
         self.resetEntryBox();
         self.openDialog();
+      } else {
+        console.log("Something went wrong... TODO Error messaging for user");
+        return;
       }
-    );
+    })
   }
 
   render() {

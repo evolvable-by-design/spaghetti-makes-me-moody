@@ -12,15 +12,15 @@ export function createUser(username, password, historyData, callback) {
     }
   })
     .then(function(response) {
-      callback(response.status);
+      callback(response);
     })
     .catch(function(error) {
       if (error.response) {
-        callback(error.response.status);
+        callback(error.response);
       } else if (error.request) {
-        callback(504);
+        callback();
       } else {
-        callback(504);
+        callback();
       }
     });
 }
@@ -41,11 +41,11 @@ export function retrieveUser(username, password, callback) {
     })
     .catch(function(error) {
       if (error.response) {
-        callback(error.response.status);
+        callback(error.response);
       } else if (error.request) {
-        callback(504);
+        callback();
       } else {
-        callback(504);
+        callback();
       }
     });
 }
@@ -68,15 +68,15 @@ export function deleteEntry(username, password, entryIndex, callback) {
     }
   })
     .then(function(response) {
-      callback(response.status);
+      callback(response);
     })
     .catch(function(error) {
       if (error.response) {
-        callback(error.response.status);
+        callback(error.response);
       } else if (error.request) {
-        callback(504);
+        callback();
       } else {
-        callback(504);
+        callback();
       }
     });
 }
@@ -106,11 +106,11 @@ export function analyzeText(text, username, password, callback) {
     })
     .catch(function(error) {
       if (error.response) {
-        callback(error.response.status);
+        callback(error.response);
       } else if (error.request) {
-        callback(504);
+        callback();
       } else {
-        callback(504);
+        callback();
       }
     });
 }
