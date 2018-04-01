@@ -81,12 +81,23 @@ export function deleteEntry(username, password, entryIndex, callback) {
     });
 }
 
-export function analyzeText(text, callback) {
+export function analyzeText(text, username, password, callback) {
   var url = baseUrl + '/analyzeText/';
-  var formData = 
-    {
-      text: text
-    };
+  var formData;
+  if (!!username || !!password) {
+    console.log("FHJOSJALIFHKJSALFISAJFKAS");
+    formData = 
+      {
+        text: text,
+        username: username,
+        password: password
+      };
+  } else {
+    formData = 
+      {
+        text: text,
+      };
+  }
 
   axios({
       method: 'post',

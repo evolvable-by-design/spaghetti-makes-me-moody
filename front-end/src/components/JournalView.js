@@ -18,6 +18,9 @@ class JournalView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loggedIn: props.state.loggedIn,
+      username: props.state.username,
+      password: props.state.password,
       entryValue: '',
       placeholderText: 'Please elaborate!',
       dialogOpen: false
@@ -56,9 +59,9 @@ class JournalView extends React.Component {
   handleSubmit(event) {
     var self = this;
     event.preventDefault();
-    analyzeText(self.state.entryValue, function(response) {
+    analyzeText(self.state.entryValue, self.state.username, self.state.password, function(response) {
       var status = response.status;
-      if (status !== 200) {
+      if (status !== 200 && status !== 201) {
         console.log(status)
         console.log("Something went wrong... TODO Error messaging for user");
         return;
