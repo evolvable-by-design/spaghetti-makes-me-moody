@@ -85,24 +85,22 @@ export function analyzeText(text, username, password, callback) {
   var url = baseUrl + '/analyzeText/';
   var formData;
   if (!!username || !!password) {
-    formData = 
-      {
-        text: text,
-        username: username,
-        password: password
-      };
+    formData = {
+      text: text,
+      username: username,
+      password: password
+    };
   } else {
-    formData = 
-      {
-        text: text,
-      };
+    formData = {
+      text: text
+    };
   }
 
   axios({
-      method: 'post',
-      url: url,
-      data: formData,
-    })
+    method: 'post',
+    url: url,
+    data: formData
+  })
     .then(function(response) {
       callback(response);
     })
@@ -114,5 +112,5 @@ export function analyzeText(text, username, password, callback) {
       } else {
         callback(504);
       }
-    })
+    });
 }
