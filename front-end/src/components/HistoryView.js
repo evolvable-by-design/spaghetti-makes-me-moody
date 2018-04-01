@@ -1,6 +1,5 @@
 import React from 'react';
 import HistoryEntry from './HistoryEntry';
-import { sentimentFeedback, classificationFeedback } from './Analyzer';
 import './HistoryEntryBox.css';
 import './SaveAlertBox.css';
 
@@ -13,19 +12,21 @@ const historyDataList = {
 
 class HistoryView extends React.Component {
   render() {
+    let self = this;
     return (
       <div>
         <h1 class="HeaderTitle">History</h1>
         <div>
           <ol className="history-data-list" style={historyDataList}>
-            <SaveAlertBox
-              state={this.props.state}
-            />
-            {this.props.state.historyData.map(function(listValue) {
+            <SaveAlertBox state={this.props.state} />
+            {this.props.state.historyData.map(function(listValue, index) {
               return (
-                <li>
+                <li key={index}>
                   <HistoryEntry
                     data={listValue}
+                    state={self.props.state}
+                    removeHistoryAtIndex={self.props.removeHistoryAtIndex}
+                    entryIndex={index}
                   />
                 </li>
               );
@@ -46,7 +47,7 @@ function SaveAlertBox(props) {
       </div>
     );
   } else {
-    return (null);
+    return null;
   }
 }
 

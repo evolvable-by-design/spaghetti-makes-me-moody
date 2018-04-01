@@ -50,9 +50,9 @@ class HeaderView extends React.Component {
 
   thirdButtonTitle() {
     if (this.props.state.loggedIn) {
-      return 'Overall'
+      return 'Overall';
     } else {
-      return 'Login'
+      return 'Login';
     }
   }
 
@@ -168,7 +168,7 @@ class LogoutMenuButton extends React.Component {
         </button>
       );
     } else {
-      return (null);
+      return null;
     }
   }
 }
@@ -187,7 +187,7 @@ class LogoutButton extends React.Component {
         </button>
       );
     } else {
-      return (null);
+      return null;
     }
   }
 }

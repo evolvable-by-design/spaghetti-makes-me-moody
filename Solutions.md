@@ -1,0 +1,23 @@
+# Spaghetti Makes Me Moody 
+## Solutions.md
+
+### Features
+
+All of the functionality from Part 2 works the same in Part 3 but with the back-end database and server connected to the front-end of the application. New functionality that has been introduced in Part 3 will be described below. This will include User Sign-Up, Saved Entries, and a working Overall page with the users entries from the back-end. 
+
+#### Sign-In/Sign-Up
+Users are now able to create an account with Spaghetti Makes Me Moody. Users can still use the application without an account, but if they do not use an account, the entries will only be saved for that session and the user will not be able to obtain Overall data on the entries submitted that session. Furthermore, the User will be unable to get any of the achievements that are given from using the application. If a user chooses to sign-up, when they click on the Login button, they can choose to create an account. For an account to be created, the user needs to create a username and password. There no restrictions on the username except for that it can only be any combination of letters and numbers. The same goes for the password except that any password has to be at least 8 characters long. Once a User creates an account, they will be able to sign in, save their entries and view their Overall page with their information and achievements. 
+
+#### Journal
+The main feature that Spaghetti Makes Me Moody has is the Journal Entry. From here the user can submit a text entry for the Google Natural Language API to identify and analzye. After the user submits a text entry, a confirmation prompt will appear asking them if they would like to view the results. If they agree to the prompt, they will then be taken to the History view, otherwise, they will have the opportunity to submit another entry. This result will then be posted on the History View. All the entries will be listed in the History View and the Google API will only be doing the processing of the text. 
+
+#### History
+The second feature is the History view. This allows the user to view all of their previous entries and allows them to see some feedback text that the application will generate based on estimated sentiment value and text classification category calculated by Google's Natural Language API. Below the feedback text is a Moody Health Bar. Depending on the classification of the text, the bar will be filled based on how happy or sad the user is. For example, if an entry were to say "I had a great day today." our application will respond with something like "I hope everyday is as great as this day is." as well as have the Moody Health Bar at around 40%. If the user puts an energetic journal entry like "My family is the best family ever. I can't believe how amazing they are its unbelieveable." then the Moody Health Bar would be filled to 100%.  
+
+Alternatively, if the user writes extensively about their latest wilderness hike, the application might respond with "🗻 Have you been to Mount Fuji? It's a beautiful place." The history view allows the user to look at previous entries and view various feedback that the web application has provided.
+
+#### Overall
+The third feature is the Overall view. This view takes all the entries from the history view and converts it into graphical interpretation. This allows the user to see the rankings of all entries submitted and the ratios of the estimated emotions that the user may have determined by the Google API. Lastly the overview view will show a list of awards given to the user after continuous use of the application. If the user has repeatedly been happy, they could be awarded with an achievement. These achievements can range from creating your first entry, having an entry with the word 'spaghetti', or having a streak of entries for a number of consecutive days.
+
+#### End User
+With the addition of a connected and working back-end database and server, Users will now be able to create accounts and save their journal entries with their respective responses and Moody Health Bars. End Users will also be rewarded on how often they use Spaghetti Makes Me Moody and will be able to get a historical view of how they have been doing throughout their lives. Our hope is that the End-User will be able to use Spaghetti Makes Me Moody to track their state of mind and be able to adjust themselves towards a positive mindset. We will estimate the potential emotion that the user is experiencing, identify user interests, and output advice that should be beneficial to the user. In essence, the End-User will be able to use Spaghetti Makes Me Moody to improve their future selves.

@@ -149,6 +149,10 @@ const deleteEntryAtIndex = async function(username, password, entryIndex) {
       return 1;
     }
 
+    if (docs[0].entryList[entryIndex] === undefined) {
+      return 1;
+    }
+
     // This is a hack, and it is NOT atomic, but apparently mongo doesn't have
     // a proper way of remove array items by index. Currently they only support
     // pop from the beginning or end of array

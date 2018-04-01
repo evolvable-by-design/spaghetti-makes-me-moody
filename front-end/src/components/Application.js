@@ -27,6 +27,7 @@ class Application extends React.Component {
     this.handleViewChange = this.handleViewChange.bind(this);
     this.handleLoginSuccess = this.handleLoginSuccess.bind(this);
     this.setHistoryData = this.setHistoryData.bind(this);
+    this.removeHistoryAtIndex = this.removeHistoryAtIndex.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
 
@@ -34,9 +35,10 @@ class Application extends React.Component {
     this.setState({ view: viewString });
   }
 
-  handleLoginSuccess(setUsername, setPassword) {
+  handleLoginSuccess(setUsername, setPassword, setHistoryData) {
     this.setState({ username: setUsername });
     this.setState({ password: setPassword });
+    this.setState({ historyData: setHistoryData });
     this.setState({ loggedIn: true });
   }
 
@@ -44,6 +46,12 @@ class Application extends React.Component {
     let newHistoryData = this.state.historyData;
     newHistoryData.unshift(data);
     this.setState({ historyData: newHistoryData });
+  }
+
+  removeHistoryAtIndex(index) {
+    this.state.historyData.splice(index, 1);
+    // hack to force re-render
+    this.setState({ historyData: this.state.historyData });
   }
 
   handleLogout() {
@@ -67,8 +75,9 @@ class Application extends React.Component {
             <MainView
               state={this.state}
               changeView={this.handleViewChange}
-              handleLoginSuccess = {this.handleLoginSuccess}
+              handleLoginSuccess={this.handleLoginSuccess}
               setHistoryData={this.setHistoryData}
+              removeHistoryAtIndex={this.removeHistoryAtIndex}
             />
           </div>
         </div>
@@ -87,17 +96,22 @@ function MainView(props) {
       />
     );
   } else if (viewType === 'History') {
-    return <HistoryView
-              state={props.state}
-            />;
+    return (
+      <HistoryView
+        state={props.state}
+        removeHistoryAtIndex={props.removeHistoryAtIndex}
+      />
+    );
   } else if (viewType === 'Overall') {
     return <OverallView />;
   } else if (viewType === 'Login') {
-    return <LoginOverallView
-            historyData={props.state.historyData}
-            changeView={props.changeView}
-            handleLoginSuccess = {props.handleLoginSuccess}
-           />;
+    return (
+      <LoginOverallView
+        historyData={props.state.historyData}
+        changeView={props.changeView}
+        handleLoginSuccess={props.handleLoginSuccess}
+      />
+    );
   } else {
     return;
   }

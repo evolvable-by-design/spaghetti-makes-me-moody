@@ -58,7 +58,7 @@ class JournalView extends React.Component {
     event.preventDefault();
     analyzeText(self.state.entryValue, function(response) {
       var status = response.status;
-      if (status != 200) {
+      if (status !== 200) {
         console.log(status)
         console.log("Something went wrong... TODO Error messaging for user");
         return;

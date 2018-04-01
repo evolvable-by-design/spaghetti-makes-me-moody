@@ -68,7 +68,7 @@ function retrieveUser(req, res) {
       } else if (isFound === 1) {
         res.status(404).json('User not found!');
       } else {
-        res.json({
+        res.status(200).json({
           message: 'User retrieved successfully!',
           data: isFound
         });
