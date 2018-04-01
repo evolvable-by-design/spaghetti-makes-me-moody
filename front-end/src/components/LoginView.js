@@ -52,6 +52,15 @@ class LoginView extends React.Component {
     retrieveUser(this.state.usernameField, this.state.passwordField, function(
       response
     ) {
+
+      if (typeof response === 'undefined') {
+        object.setState({
+          alertMessage: 'Error in logging in, please try again!'
+        });
+        object.setState({ showAlert: true });
+        return;
+      }
+
       if (response.status === 200) {
         object.props.handleLoginSuccess(
           object.state.usernameField,

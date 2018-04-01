@@ -33,12 +33,20 @@ class HistoryEntry extends React.Component {
       self.props.state.username,
       self.props.state.password,
       self.props.entryIndex,
-      function(responseCode) {
-        if (responseCode === 200) {
+      function(response) {
+
+        if (typeof response === 'undefined') {
+          alert(
+            'Something went reallly wrong deleting the entry (server is down possibly)'
+          );
+          return;
+        }
+
+        if (response.status === 200) {
           // Delete the entry from in memory list
           console.log(self.props);
           self.props.removeHistoryAtIndex(self.props.entryIndex);
-        } else if (responseCode === 404) {
+        } else if (response.status === 404) {
           alert("Couldn't find this user or index in the db");
         } else {
           alert(
