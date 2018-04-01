@@ -7,7 +7,7 @@ class OverallView extends React.Component {
     return (
       <div>
         <h1 class="HeaderTitle">Overall</h1>
-        <OverallBox />
+        <OverallBox historyData={this.props.historyData} />
       </div>
     );
   }
