@@ -5,12 +5,14 @@
   "main": "/src/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/csc309-18s/assignment-2-spaghetti-makes-me-moody.git"
+    "url":
+      "git+https://github.com/csc309-18s/assignment-2-spaghetti-makes-me-moody.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/csc309-18s/assignment-2-spaghetti-makes-me-moody/issues"
+    "url":
+      "https://github.com/csc309-18s/assignment-2-spaghetti-makes-me-moody/issues"
   },
   "homepage": ".",
   "dependencies": {
@@ -44,7 +46,7 @@
     "prettier": "^1.10.2"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": [
+    "{src, ../back-end/api, ../}/**/*.{js,jsx,json,css}": [
       "prettier --single-quote --write",
       "git add"
     ]

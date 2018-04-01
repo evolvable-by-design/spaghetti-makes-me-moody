@@ -1,14 +1,13 @@
 import React from 'react';
 import SignUpView from './SignUpView.js';
-import LoginView from './LoginView.js'
+import LoginView from './LoginView.js';
 
 class LoginOverallView extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-                  loginViewType: 'Login'
-                 };
+      loginViewType: 'Login'
+    };
 
     this.handleLoginViewChange = this.handleLoginViewChange.bind(this);
   }
@@ -19,15 +18,15 @@ class LoginOverallView extends React.Component {
 
   render() {
     return (
-        <div>
-          <MainView
-            state={this.state}
-            historyData={this.props.historyData}
-            changeView={this.props.changeView}
-            changeLoginView={this.handleLoginViewChange}
-            handleLoginSuccess = {this.props.handleLoginSuccess}
-          />
-        </div>
+      <div>
+        <MainView
+          state={this.state}
+          historyData={this.props.historyData}
+          changeView={this.props.changeView}
+          changeLoginView={this.handleLoginViewChange}
+          handleLoginSuccess={this.props.handleLoginSuccess}
+        />
+      </div>
     );
   }
 }
@@ -39,7 +38,7 @@ function MainView(props) {
       <LoginView
         changeView={props.changeView}
         changeLoginView={props.changeLoginView}
-        handleLoginSuccess = {props.handleLoginSuccess}
+        handleLoginSuccess={props.handleLoginSuccess}
       />
     );
   } else if (viewType === 'SignUp') {
