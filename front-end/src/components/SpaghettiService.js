@@ -85,7 +85,6 @@ export function analyzeText(text, username, password, callback) {
   var url = baseUrl + '/analyzeText/';
   var formData;
   if (!!username || !!password) {
-    console.log("FHJOSJALIFHKJSALFISAJFKAS");
     formData = 
       {
         text: text,

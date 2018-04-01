@@ -40,8 +40,6 @@ function analyzeEntry(req, res) {
   var text = req.swagger.params.data.value.text;
   var username = req.swagger.params.data.value.username;
   var password = req.swagger.params.data.value.password;
-  console.log(username);
-  console.log(password);
   console.log(!!username || !!password);
   let postData = {
     document: {
