@@ -28,6 +28,7 @@ class Application extends React.Component {
     this.handleLoginSuccess = this.handleLoginSuccess.bind(this);
     this.setHistoryData = this.setHistoryData.bind(this);
     this.removeHistoryAtIndex = this.removeHistoryAtIndex.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   handleViewChange(viewString) {
@@ -53,6 +54,13 @@ class Application extends React.Component {
     this.setState({ historyData: this.state.historyData });
   }
 
+  handleLogout() {
+    this.setState({ username: '' });
+    this.setState({ password: '' });
+    this.setState({ loggedIn: false });
+    this.setState({ view: 'Journal' });
+  }
+
   render() {
     return (
       <div>
@@ -61,6 +69,7 @@ class Application extends React.Component {
           <HeaderView
             state={this.state}
             onViewButtonClick={this.handleViewChange}
+            handleLogout={this.handleLogout}
           />
           <div>
             <MainView
