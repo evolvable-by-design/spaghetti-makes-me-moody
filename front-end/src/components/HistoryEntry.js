@@ -46,6 +46,7 @@ class HistoryEntry extends React.Component {
           // Delete the entry from in memory list
           console.log(self.props);
           self.props.removeHistoryAtIndex(self.props.entryIndex);
+          self.closeDialog();
         } else if (response.status === 404) {
           alert("Couldn't find this user or index in the db");
         } else {
