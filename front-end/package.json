@@ -46,9 +46,14 @@
     "prettier": "^1.10.2"
   },
   "lint-staged": {
-    "{src, ../back-end/api, ../}/**/*.{js,jsx,json,css}": [
+    "src/**/*.{js,jsx,json,css}": [
       "prettier --single-quote --write",
       "git add"
-    ]
+    ],
+    "../back-end/api/**/*.{js,json}": [
+      "prettier --single-quote --write",
+      "git add"
+    ],
+    "../back-end/*.js": ["prettier --single-quote --write", "git add"]
   }
 }

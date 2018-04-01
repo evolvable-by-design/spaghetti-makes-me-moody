@@ -4,7 +4,7 @@ import './EntryDialog.css';
 import './MainBodyText.css';
 import './JournalBox.css';
 import './SubmitButton.css';
-import { analyzeText } from './SpaghettiService'
+import { analyzeText } from './SpaghettiService';
 
 const textBoxLayoutStyle = {
   textAlign: 'center'
@@ -59,17 +59,22 @@ class JournalView extends React.Component {
   handleSubmit(event) {
     var self = this;
     event.preventDefault();
-    analyzeText(self.state.entryValue, self.state.username, self.state.password, function(response) {
-      var status = response.status;
-      if (status !== 200 && status !== 201) {
-        console.log(status)
-        console.log("Something went wrong... TODO Error messaging for user");
-        return;
+    analyzeText(
+      self.state.entryValue,
+      self.state.username,
+      self.state.password,
+      function(response) {
+        var status = response.status;
+        if (status !== 200 && status !== 201) {
+          console.log(status);
+          console.log('Something went wrong... TODO Error messaging for user');
+          return;
+        }
+        self.props.setHistoryData(response.data.data);
+        self.resetEntryBox();
+        self.openDialog();
       }
-      self.props.setHistoryData(response.data.data);
-      self.resetEntryBox();
-      self.openDialog();
-    })
+    );
   }
 
   render() {
