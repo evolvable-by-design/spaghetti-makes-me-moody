@@ -23,7 +23,7 @@ spaghetti-back-end
 
 ### /createUser/{userName}/password/{password}
 ---
-##### ***POST***
+##### ***PUT***
 **Description:** Create a new user, optionally setting their historyData ifsome has already been generated
 
 **Parameters**
