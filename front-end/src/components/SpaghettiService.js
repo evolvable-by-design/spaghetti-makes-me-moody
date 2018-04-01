@@ -80,3 +80,29 @@ export function deleteEntry(username, password, entryIndex, callback) {
       }
     });
 }
+
+export function analyzeText(text, callback) {
+  var url = baseUrl + '/analyzeText/';
+  var formData = 
+    {
+      text: text
+    };
+
+  axios({
+      method: 'post',
+      url: url,
+      data: formData,
+    })
+    .then(function(response) {
+      callback(response);
+    })
+    .catch(function(error) {
+      if (error.response) {
+        callback(error.response.status);
+      } else if (error.request) {
+        callback(504);
+      } else {
+        callback(504);
+      }
+    })
+}

@@ -1,6 +1,5 @@
 import React from 'react';
 import HistoryEntry from './HistoryEntry';
-import { sentimentFeedback, classificationFeedback } from './Analyzer';
 import './HistoryEntryBox.css';
 import './SaveAlertBox.css';
 
@@ -21,25 +20,12 @@ class HistoryView extends React.Component {
           <ol className="history-data-list" style={historyDataList}>
             <SaveAlertBox state={this.props.state} />
             {this.props.state.historyData.map(function(listValue, index) {
-              let sentiment = sentimentFeedback(
-                listValue.sentimentData.documentSentiment
-              );
-              let classification = classificationFeedback(
-                listValue.classificationData
-              );
-              let feedbackObj = {
-                sentFeedback: sentiment.feedback,
-                sentScore: sentiment.feeling,
-                classFeedback: classification
-              };
               return (
                 <li key={index}>
                   <HistoryEntry
+                    data={listValue}
                     state={self.props.state}
                     removeHistoryAtIndex={self.props.removeHistoryAtIndex}
-                    date={listValue.date}
-                    data={feedbackObj}
-                    entry={listValue.entry}
                     entryIndex={index}
                   />
                 </li>

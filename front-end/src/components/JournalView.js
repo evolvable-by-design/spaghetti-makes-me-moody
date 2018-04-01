@@ -1,10 +1,10 @@
 import React from 'react';
-import axios from 'axios';
 import Modal from 'react-modal';
 import './EntryDialog.css';
 import './MainBodyText.css';
 import './JournalBox.css';
 import './SubmitButton.css';
+import { analyzeText } from './SpaghettiService'
 
 const textBoxLayoutStyle = {
   textAlign: 'center'
@@ -13,37 +13,6 @@ const textBoxLayoutStyle = {
 const buttonLayoutStyle = {
   marginTop: '20px'
 };
-
-function postAnalyzeSentiment(data) {
-  return (
-    axios
-      .post(
-        'https://language.googleapis.com/v1/documents:analyzeSentiment?key=AIzaSyBAGVnmL3X96nCv0GLAxuFw4-czBVTrfyo',
-        data
-      )
-      /* This then + catch allows us to have errors even though using .all() later */
-      .then(function(content) {
-        return content;
-      })
-      .catch(function(error) {
-        console.log(error);
-      })
-  );
-}
-
-function postClassifyText(data) {
-  return axios
-    .post(
-      'https://language.googleapis.com/v1/documents:classifyText?key=AIzaSyBAGVnmL3X96nCv0GLAxuFw4-czBVTrfyo',
-      data
-    )
-    .then(function(content) {
-      return content;
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
-}
 
 class JournalView extends React.Component {
   constructor(props) {
@@ -87,34 +56,17 @@ class JournalView extends React.Component {
   handleSubmit(event) {
     var self = this;
     event.preventDefault();
-    let postData = {
-      document: {
-        type: 'PLAIN_TEXT',
-        content: self.state.entryValue
+    analyzeText(self.state.entryValue, function(response) {
+      var status = response.status;
+      if (status !== 200) {
+        console.log(status)
+        console.log("Something went wrong... TODO Error messaging for user");
+        return;
       }
-    };
-
-    axios
-      .all([postAnalyzeSentiment(postData), postClassifyText(postData)])
-      .then(
-        axios.spread(function(sentiment, classification) {
-          let classData = classification ? classification.data : null;
-          let sentData = sentiment ? sentiment.data : null;
-          let historyData = {
-            date: new Date(),
-            entry: self.state.entryValue,
-            sentimentData: sentData,
-            classificationData: classData
-          };
-
-          self.props.setHistoryData(historyData);
-          self.resetEntryBox();
-          self.openDialog();
-        })
-      )
-      .catch(function(error) {
-        console.log(error);
-      });
+      self.props.setHistoryData(response.data.data);
+      self.resetEntryBox();
+      self.openDialog();
+    })
   }
 
   render() {

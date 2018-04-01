@@ -55,20 +55,20 @@ class HistoryEntry extends React.Component {
       if (self.props.data.classFeedback != null) {
         return (
           <div class="HistoryEntryBox">
-            <p>{self.props.entry}</p>
+            <p>{self.props.data.entry}</p>
             <hr class="BorderLineStyle" />
-            <p>{self.props.data.sentFeedback}</p>
+            <p>{self.props.data.sentimentData.feedback}</p>
             <p>{self.props.data.classFeedback}</p>
-            <SentimentBar sentimentScore={self.props.data.sentScore} />
+            <SentimentBar sentimentScore={self.props.data.sentimentData.feeling} />
           </div>
         );
       } else {
         return (
           <div class="HistoryEntryBox">
-            <p>{self.props.entry}</p>
+            <p>{self.props.data.entry}</p>
             <hr class="BorderLineStyle" />
-            <p>{self.props.data.sentFeedback}</p>
-            <SentimentBar sentimentScore={self.props.data.sentScore} />
+            <p>{self.props.data.sentimentData.feedback}</p>
+            <SentimentBar sentimentScore={self.props.data.sentimentData.feeling} />
           </div>
         );
       }
@@ -77,7 +77,7 @@ class HistoryEntry extends React.Component {
       <div>
         <div>
           <h3 class="HistoryEntryDate">
-            <Moment format="YYYY/MM/DD HH:mm">{this.props.date}</Moment>
+            <Moment format="YYYY/MM/DD HH:mm">{this.props.data.date}</Moment>
           </h3>
           <ShowDeleteButton state={this} />
         </div>
