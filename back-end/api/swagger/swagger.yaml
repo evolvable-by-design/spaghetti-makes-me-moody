@@ -27,9 +27,9 @@ paths:
         - application/json
       operationId: analyzeEntry
       parameters:
-        - name: text
+        - name: data
           in: body
-          description: the text entry to be analyzed
+          description: the data containing the text and username + password if applicable
           required: true
           schema:
             $ref: "#/definitions/analyzeEntry"
@@ -234,6 +234,10 @@ definitions:
       - text
     properties:
       text:
+        type: string
+      username:
+        type: string
+      password:
         type: string
   entryAnalysis:
     required:
