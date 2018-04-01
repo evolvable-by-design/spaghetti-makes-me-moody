@@ -4,7 +4,7 @@ var baseUrl = 'http://localhost:10010';
 export function createUser(username, password, historyData, callback) {
   var url = baseUrl + '/createUser/' + username + '/password/' + password;
   axios({
-    method: 'post',
+    method: 'put',
     url: url,
     data: { historyData },
     headers: {
