@@ -11,7 +11,7 @@ spaghetti-back-end
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| text | body | the text entry to be analyzed | Yes | [analyzeEntry](#analyzeentry) |
+| data | body | the data containing the text and username + password if applicable | Yes | [analyzeEntry](#analyzeentry) |
 
 **Responses**
 
@@ -127,6 +127,8 @@ spaghetti-back-end
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
 | text | string |  | Yes |
+| username | string |  | No |
+| password | string |  | No |
 
 ### entryAnalysis  
 
