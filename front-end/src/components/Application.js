@@ -38,7 +38,7 @@ class Application extends React.Component {
   handleLoginSuccess(setUsername, setPassword, setHistoryData) {
     this.setState({ username: setUsername });
     this.setState({ password: setPassword });
-    this.setState({ historyData: setHistoryData });
+    this.setState({ historyData: this.state.historyData.concat(setHistoryData) });
     this.setState({ loggedIn: true });
   }
 
@@ -57,6 +57,7 @@ class Application extends React.Component {
   handleLogout() {
     this.setState({ username: '' });
     this.setState({ password: '' });
+    this.setState({ historyData: [] })
     this.setState({ loggedIn: false });
     this.setState({ view: 'Journal' });
   }
