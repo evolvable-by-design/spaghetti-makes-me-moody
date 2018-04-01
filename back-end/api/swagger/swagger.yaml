@@ -23,6 +23,8 @@ paths:
     x-swagger-router-controller: analysis
     post:
       description: Get analysis data and feedback for given text
+      consumes:
+        - application/json
       operationId: analyzeEntry
       parameters:
         - name: text
