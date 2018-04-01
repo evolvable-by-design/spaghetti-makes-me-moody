@@ -53,7 +53,7 @@ class SignUpView extends React.Component {
         }
 
         if (response.status === 201) {
-          object.props.changeLoginView('Login');
+          object.props.changeLoginView('Login', 'Sign up successful. Please log in with your username and password!');
         } else if (response.status === 400) {
           object.setState({
             alertMessage:
@@ -248,7 +248,7 @@ class SignUpView extends React.Component {
             class="SubmitButton"
             style={buttonLayoutStyle}
             onClick={() => {
-              this.props.changeLoginView('Login');
+              this.props.changeLoginView('Login', '');
             }}
           >
             cancel

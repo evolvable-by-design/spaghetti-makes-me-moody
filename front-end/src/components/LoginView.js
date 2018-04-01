@@ -38,8 +38,8 @@ class LoginView extends React.Component {
       usernameOk: false,
       passwordField: '',
       passwordOk: false,
-      showAlert: false,
-      alertMessage: ''
+      showAlert: !!props.alertMessage,
+      alertMessage: props.alertMessage
     };
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this);

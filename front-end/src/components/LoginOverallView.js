@@ -6,14 +6,15 @@ class LoginOverallView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loginViewType: 'Login'
+      loginViewType: 'Login',
+      alertMessage: ''
     };
 
     this.handleLoginViewChange = this.handleLoginViewChange.bind(this);
   }
 
-  handleLoginViewChange(viewString) {
-    this.setState({ loginViewType: viewString });
+  handleLoginViewChange(viewString, alertMessage) {
+    this.setState({ loginViewType: viewString, alertMessage: alertMessage });
   }
 
   render() {
@@ -36,6 +37,7 @@ function MainView(props) {
   if (viewType === 'Login') {
     return (
       <LoginView
+        alertMessage={props.state.alertMessage}
         changeView={props.changeView}
         changeLoginView={props.changeLoginView}
         handleLoginSuccess={props.handleLoginSuccess}
