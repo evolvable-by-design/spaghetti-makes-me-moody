@@ -51,7 +51,7 @@ paths:
   /createUser/{userName}/password/{password}:
     # binds a127 app logic to a route
     x-swagger-router-controller: user_ops
-    post:
+    put:
       description: "Create a new user, optionally setting their historyData if\
       some has already been generated"
       consumes:
