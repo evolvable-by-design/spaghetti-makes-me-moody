@@ -3,7 +3,7 @@ export function checkForAchievements(historyData) {
 	if (checkForSpaghetti(historyData)) {
 		achievements.push( { 
 			'text': 'YEAH! SPAGHETTI!', 
-			'image': 'spaghetti-pixel.png' });
+			'image': 'spaghetti-award.png' });
 	}
 
 	if (checkForBusyBee(historyData)) {
@@ -60,11 +60,9 @@ function checkForGettingHappier(historyData) {
 		return false;
 	}
 	var lastThreeEntries = historyData.slice(0, 3).reverse()
-	console.log(lastThreeEntries)
 	var latestScore = -101;
 	for (var i = 0; i < 3; i++) {
 		var entry = lastThreeEntries[i];
-		console.log(entry)
 		if (entry.sentimentData.feeling > latestScore) {
 			latestScore = entry.sentimentData.feeling;
 		} else {
