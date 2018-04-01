@@ -4,7 +4,7 @@ import './EntryDialog.css';
 import './MainBodyText.css';
 import './JournalBox.css';
 import './SubmitButton.css';
-import { analyzeText } from './SpaghettiService'
+import { analyzeText } from './SpaghettiService';
 
 const textBoxLayoutStyle = {
   textAlign: 'center'

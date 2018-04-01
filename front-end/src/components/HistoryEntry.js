@@ -67,7 +67,9 @@ class HistoryEntry extends React.Component {
             <hr class="BorderLineStyle" />
             <p>{self.props.data.sentimentData.feedback}</p>
             <p>{self.props.data.classFeedback}</p>
-            <SentimentBar sentimentScore={self.props.data.sentimentData.feeling} />
+            <SentimentBar
+              sentimentScore={self.props.data.sentimentData.feeling}
+            />
           </div>
         );
       } else {
@@ -76,7 +78,9 @@ class HistoryEntry extends React.Component {
             <p>{self.props.data.entry}</p>
             <hr class="BorderLineStyle" />
             <p>{self.props.data.sentimentData.feedback}</p>
-            <SentimentBar sentimentScore={self.props.data.sentimentData.feeling} />
+            <SentimentBar
+              sentimentScore={self.props.data.sentimentData.feeling}
+            />
           </div>
         );
       }
