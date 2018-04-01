@@ -12,6 +12,7 @@
  */
 const textAnalyzer = require('../helpers/textAnalyzer');
 const axios = require('axios');
+const config = require('../../config.json');
 
 /*
  Once you 'require' a module you can reference the things that it exports.  These are defined in module.exports.
@@ -50,7 +51,7 @@ function analyzeEntry(req, res) {
       axios.spread(function(sentiment, classification) {
         let classData = classification
           ? textAnalyzer.classificationFeedback(classification.data)
-          : null;
+          : '';
         let sentData = sentiment
           ? textAnalyzer.sentimentFeedback(sentiment.data.documentSentiment)
           : null;
@@ -77,7 +78,8 @@ function postAnalyzeSentiment(data) {
   return (
     axios
       .post(
-        'https://language.googleapis.com/v1/documents:analyzeSentiment?key=AIzaSyBAGVnmL3X96nCv0GLAxuFw4-czBVTrfyo',
+        'https://language.googleapis.com/v1/documents:analyzeSentiment?key=' +
+          config.google.languageApiKey,
         data
       )
       /* This then + catch allows us to have errors even though using .all() later */
@@ -93,7 +95,8 @@ function postAnalyzeSentiment(data) {
 function postClassifyText(data) {
   return axios
     .post(
-      'https://language.googleapis.com/v1/documents:classifyText?key=AIzaSyBAGVnmL3X96nCv0GLAxuFw4-czBVTrfyo',
+      'https://language.googleapis.com/v1/documents:classifyText?key=' +
+        config.google.languageApiKey,
       data
     )
     .then(function(content) {

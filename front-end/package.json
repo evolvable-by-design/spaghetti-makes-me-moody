@@ -5,14 +5,12 @@
   "main": "/src/index.js",
   "repository": {
     "type": "git",
-    "url":
-      "git+https://github.com/csc309-18s/assignment-2-spaghetti-makes-me-moody.git"
+    "url": "git+https://github.com/csc309-18s/assignment-2-spaghetti-makes-me-moody.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url":
-      "https://github.com/csc309-18s/assignment-2-spaghetti-makes-me-moody/issues"
+    "url": "https://github.com/csc309-18s/assignment-2-spaghetti-makes-me-moody/issues"
   },
   "homepage": ".",
   "dependencies": {

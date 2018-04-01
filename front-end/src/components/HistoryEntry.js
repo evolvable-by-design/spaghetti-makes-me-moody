@@ -55,53 +55,30 @@ class HistoryEntry extends React.Component {
       if (self.props.data.classFeedback != null) {
         return (
           <div class="HistoryEntryBox">
-            <p>{self.props.entry}</p>
+            <p>{self.props.data.entry}</p>
             <hr class="BorderLineStyle" />
-            <p>{self.props.data.sentFeedback}</p>
+            <p>{self.props.data.sentimentData.feedback}</p>
             <p>{self.props.data.classFeedback}</p>
-            <SentimentBar sentimentScore={self.props.data.sentScore} />
+            <SentimentBar sentimentScore={self.props.data.sentimentData.feeling} />
           </div>
         );
       } else {
         return (
           <div class="HistoryEntryBox">
-            <p>{self.props.entry}</p>
+            <p>{self.props.data.entry}</p>
             <hr class="BorderLineStyle" />
-            <p>{self.props.data.sentFeedback}</p>
-            <SentimentBar sentimentScore={self.props.data.sentScore} />
+            <p>{self.props.data.sentimentData.feedback}</p>
+            <SentimentBar sentimentScore={self.props.data.sentimentData.feeling} />
           </div>
         );
       }
     };
     return (
       <div>
-        <div>
-          <h3 class="HistoryEntryDate">
-            <Moment format="YYYY/MM/DD HH:mm">{this.props.date}</Moment>
-          </h3>
-          <ShowDeleteButton state={this} />
-        </div>
-        <div>{getContent()}</div>
-        <Modal
-          id="modal_with_forms"
-          isOpen={self.state.dialogOpen}
-          onRequestClose={this.closeDialog}
-          overlayClassName={'EntryDialogOverlay'}
-          className={'EntryDialog'}
-        >
-          <h2 class={'EntryDialogHeader'}>Delete entry</h2>
-          <div class={'EntryDialogContent'}>
-            Are you sure you want to delete this entry?
-          </div>
-          <div class={'EntryDialogButtonContainer'}>
-            <button class={'TabButton'} onClick={self.closeDialog}>
-              No
-            </button>
-            <button class={'TabButton'} onClick={self.deleteEntryOnClick}>
-              Yes
-            </button>
-          </div>
-        </Modal>
+        <h3 class="HistoryEntryDate">
+          <Moment format="YYYY/MM/DD HH:mm">{this.props.data.date}</Moment>
+        </h3>
+        {getContent()}
       </div>
     );
   }

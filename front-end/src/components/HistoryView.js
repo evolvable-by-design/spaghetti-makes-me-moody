@@ -13,34 +13,19 @@ const historyDataList = {
 
 class HistoryView extends React.Component {
   render() {
-    let self = this;
     return (
       <div>
         <h1 class="HeaderTitle">History</h1>
         <div>
           <ol className="history-data-list" style={historyDataList}>
-            <SaveAlertBox state={this.props.state} />
-            {this.props.state.historyData.map(function(listValue, index) {
-              let sentiment = sentimentFeedback(
-                listValue.sentimentData.documentSentiment
-              );
-              let classification = classificationFeedback(
-                listValue.classificationData
-              );
-              let feedbackObj = {
-                sentFeedback: sentiment.feedback,
-                sentScore: sentiment.feeling,
-                classFeedback: classification
-              };
+            <SaveAlertBox
+              state={this.props.state}
+            />
+            {this.props.state.historyData.map(function(listValue) {
               return (
-                <li key={index}>
+                <li>
                   <HistoryEntry
-                    state={self.props.state}
-                    removeHistoryAtIndex={self.props.removeHistoryAtIndex}
-                    date={listValue.date}
-                    data={feedbackObj}
-                    entry={listValue.entry}
-                    entryIndex={index}
+                    data={listValue}
                   />
                 </li>
               );
