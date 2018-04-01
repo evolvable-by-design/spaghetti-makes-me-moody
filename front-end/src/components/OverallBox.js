@@ -8,6 +8,7 @@ import './OverallBoxGraphLayout.css';
 import './GraphStyle.css';
 import './HistoryEntryBox.css';
 import './BorderLineStyle.css';
+import { checkForAchievements } from './AchievementCheck';
 
 const OverallBoxAwardLayoutStyle = {
   display: 'flex',
@@ -21,7 +22,7 @@ const AwardIconContainerLayoutStyle = {
   height: '100px',
   overflow: 'hidden',
   position: 'relative',
-  margin: '20px 20px 20px 20px'
+  margin: '8px'
 };
 
 const AwardIconLayoutStyle = {
@@ -29,7 +30,6 @@ const AwardIconLayoutStyle = {
   maxWeight: '100%',
   height: 'auto',
   width: 'auto',
-  top: '25%',
   position: 'absolute'
 };
 
@@ -63,13 +63,13 @@ class OverallBox extends React.Component {
 
     this.createGraphData = this.createGraphData.bind(this);
     this.createDoughnutGraphData = this.createDoughnutGraphData.bind(this);
+    this.createAwardDOM = this.createAwardDOM.bind(this);
   }
 
   createGraphData() {
     let self = this;
     let dates = [];
     let sentimentList = [];
-    console.log(self);
 
     let graphLimit =
       self.props.historyData.length <= 7 ? self.props.historyData.length : 7;
@@ -79,9 +79,6 @@ class OverallBox extends React.Component {
       dates.push(element.date.slice(2, 10));
       sentimentList.push(element.sentimentData.feeling);
     }
-
-    console.log(dates);
-    console.log(sentimentList);
 
     var data = {
       labels: dates,
@@ -139,6 +136,30 @@ class OverallBox extends React.Component {
     return data;
   }
 
+  createAwardDOM() {
+    var awards = checkForAchievements(this.props.historyData);
+    var dom = []
+    for (var i = 0; i < awards.length; i++) {
+      var award = awards[i];
+      dom.push(
+        <div>
+          <a data-tip={award.text}>
+                <div style={AwardIconContainerLayoutStyle}>
+                  <img
+                    alt="placeholder"
+                    src={require('./' + award.image)}
+                    style={AwardIconLayoutStyle}
+                  />
+                </div>
+          </a>
+          <ReactTooltip place="top" effect="solid" />
+        </div>
+      )
+    }
+    return dom;
+  }
+
+
   render() {
     return (
       <div>
@@ -158,36 +179,7 @@ class OverallBox extends React.Component {
           <hr class="BorderLineStyle" />
           <h3>Awards</h3>
           <div style={OverallBoxAwardLayoutStyle}>
-            <a data-tip="SO MUCH SPAGHETTI">
-              <div style={AwardIconContainerLayoutStyle}>
-                <img
-                  alt="placeholder"
-                  src={require('./spaghetti-pixel.png')}
-                  style={AwardIconLayoutStyle}
-                />
-              </div>
-            </a>
-            <ReactTooltip place="top" effect="solid" />
-            <a data-tip="MORE SPAGHETTI">
-              <div style={AwardIconContainerLayoutStyle}>
-                <img
-                  alt="placeholder"
-                  src={require('./spaghetti-pixel.png')}
-                  style={AwardIconLayoutStyle}
-                />
-              </div>
-            </a>
-            <ReactTooltip place="top" effect="solid" />
-            <a data-tip="MORE SPAGHETTI">
-              <div style={AwardIconContainerLayoutStyle}>
-                <img
-                  alt="placeholder"
-                  src={require('./spaghetti-pixel.png')}
-                  style={AwardIconLayoutStyle}
-                />
-              </div>
-            </a>
-            <ReactTooltip place="top" effect="solid" />
+            {this.createAwardDOM()}
           </div>
           <hr class="BorderLineStyle" />
         </div>
