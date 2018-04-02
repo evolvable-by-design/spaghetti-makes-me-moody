@@ -61,13 +61,13 @@ class HistoryEntry extends React.Component {
   render() {
     let self = this;
     let getContent = function() {
-      if (self.props.data.classFeedback != null) {
+      if (self.props.data.classificationData != null) {
         return (
           <div class="HistoryEntryBox">
             <p>{self.props.data.entry}</p>
             <hr class="BorderLineStyle" />
             <p>{self.props.data.sentimentData.feedback}</p>
-            <p>{self.props.data.classFeedback}</p>
+            <p>{self.props.data.classificationData}</p>
             <SentimentBar
               sentimentScore={self.props.data.sentimentData.feeling}
             />
