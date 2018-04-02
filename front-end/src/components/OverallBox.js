@@ -2,6 +2,7 @@ import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import { Line } from 'react-chartjs-2';
 import { Doughnut } from 'react-chartjs-2';
+import 'chartjs-plugin-deferred';
 import DoughnutGraph from './DoughnutGraph';
 import './HeaderTitle.css';
 import './OverallBoxGraphLayout.css';
@@ -9,6 +10,10 @@ import './GraphStyle.css';
 import './HistoryEntryBox.css';
 import './BorderLineStyle.css';
 import { checkForAchievements } from './AchievementCheck';
+import { defaults } from 'react-chartjs-2';
+
+defaults.global.defaultFontFamily = "'Press Start 2p', cursive";
+defaults.global.defaultFontSize = 11;
 
 const OverallBoxAwardLayoutStyle = {
   display: 'flex',
@@ -38,6 +43,24 @@ class OverallBox extends React.Component {
     super(props);
     this.state = {
       graphOptions: {
+        plugins: {
+              deferred: {
+                delay: 500 //500ms
+              }
+            },
+        tooltips: {
+              callbacks: {
+                title: function(tooltipItem, data) {
+                  return;
+                },
+                label: function(tooltipItem, data) {
+                  return data['datasets'][0]['data'][tooltipItem['index']].toFixed(1);;
+                },
+                afterLabel: function(tooltipItem, data) {
+                  return;
+                }
+              }
+            },
         scales: {
           yAxes: [
             {
@@ -54,10 +77,19 @@ class OverallBox extends React.Component {
             {
               ticks: {
                 autoSkip: false
-              }
+              },
+              display: false
             }
           ]
-        }
+        },
+        layout: {
+              padding: {
+                left: 5,
+                right: 5,
+                top: 5,
+                bottom: 5
+              }
+            }
       }
     };
 
@@ -169,11 +201,21 @@ class OverallBox extends React.Component {
             <div class="GraphStyle">
               <Line
                 data={this.createGraphData()}
+                height={150}
                 options={this.state.graphOptions}
               />
             </div>
             <div class="GraphStyle">
-              <Doughnut data={this.createDoughnutGraphData} />
+              <Doughnut data={this.createDoughnutGraphData}
+                        height={150}
+                        options={{
+                          plugins: {
+                            deferred: {
+                              delay: 500 //500ms
+                            }
+                          }
+                        }}
+              />
             </div>
           </div>
           <hr class="BorderLineStyle" />
