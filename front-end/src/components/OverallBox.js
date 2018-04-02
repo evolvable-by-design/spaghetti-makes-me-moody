@@ -3,7 +3,6 @@ import ReactTooltip from 'react-tooltip';
 import { Line } from 'react-chartjs-2';
 import { Doughnut } from 'react-chartjs-2';
 import 'chartjs-plugin-deferred';
-import DoughnutGraph from './DoughnutGraph';
 import './HeaderTitle.css';
 import './OverallBoxGraphLayout.css';
 import './GraphStyle.css';
