@@ -44,23 +44,25 @@ class OverallBox extends React.Component {
     this.state = {
       graphOptions: {
         plugins: {
-              deferred: {
-                delay: 500 //500ms
-              }
-            },
+          deferred: {
+            delay: 500 //500ms
+          }
+        },
         tooltips: {
-              callbacks: {
-                title: function(tooltipItem, data) {
-                  return;
-                },
-                label: function(tooltipItem, data) {
-                  return data['datasets'][0]['data'][tooltipItem['index']].toFixed(1);;
-                },
-                afterLabel: function(tooltipItem, data) {
-                  return;
-                }
-              }
+          callbacks: {
+            title: function(tooltipItem, data) {
+              return;
             },
+            label: function(tooltipItem, data) {
+              return data['datasets'][0]['data'][tooltipItem['index']].toFixed(
+                1
+              );
+            },
+            afterLabel: function(tooltipItem, data) {
+              return;
+            }
+          }
+        },
         scales: {
           yAxes: [
             {
@@ -83,13 +85,13 @@ class OverallBox extends React.Component {
           ]
         },
         layout: {
-              padding: {
-                left: 5,
-                right: 5,
-                top: 5,
-                bottom: 5
-              }
-            }
+          padding: {
+            left: 5,
+            right: 5,
+            top: 5,
+            bottom: 5
+          }
+        }
       }
     };
 
@@ -174,27 +176,26 @@ class OverallBox extends React.Component {
 
   createAwardDOM() {
     var awards = checkForAchievements(this.props.historyData);
-    var dom = []
+    var dom = [];
     for (var i = 0; i < awards.length; i++) {
       var award = awards[i];
       dom.push(
         <div>
           <a data-tip={award.text}>
-                <div style={AwardIconContainerLayoutStyle}>
-                  <img
-                    alt="placeholder"
-                    src={require('./' + award.image)}
-                    style={AwardIconLayoutStyle}
-                  />
-                </div>
+            <div style={AwardIconContainerLayoutStyle}>
+              <img
+                alt="placeholder"
+                src={require('./' + award.image)}
+                style={AwardIconLayoutStyle}
+              />
+            </div>
           </a>
           <ReactTooltip place="top" effect="solid" />
         </div>
-      )
+      );
     }
     return dom;
   }
-
 
   render() {
     return (
@@ -210,23 +211,22 @@ class OverallBox extends React.Component {
               />
             </div>
             <div class="GraphStyle">
-              <Doughnut data={this.createDoughnutGraphData}
-                        height={150}
-                        options={{
-                          plugins: {
-                            deferred: {
-                              delay: 500 //500ms
-                            }
-                          }
-                        }}
+              <Doughnut
+                data={this.createDoughnutGraphData}
+                height={150}
+                options={{
+                  plugins: {
+                    deferred: {
+                      delay: 500 //500ms
+                    }
+                  }
+                }}
               />
             </div>
           </div>
           <hr class="BorderLineStyle" />
           <h3>Awards</h3>
-          <div style={OverallBoxAwardLayoutStyle}>
-            {this.createAwardDOM()}
-          </div>
+          <div style={OverallBoxAwardLayoutStyle}>{this.createAwardDOM()}</div>
           <hr class="BorderLineStyle" />
         </div>
       </div>

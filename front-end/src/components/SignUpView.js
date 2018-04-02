@@ -43,7 +43,6 @@ class SignUpView extends React.Component {
       this.state.passwordField,
       this.props.historyData,
       function(response) {
-
         if (typeof response === 'undefined') {
           object.setState({
             alertMessage: 'Error in signing up, please try again!'
@@ -53,7 +52,10 @@ class SignUpView extends React.Component {
         }
 
         if (response.status === 201) {
-          object.props.changeLoginView('Login', 'Sign up successful. Please log in with your username and password!');
+          object.props.changeLoginView(
+            'Login',
+            'Sign up successful. Please log in with your username and password!'
+          );
         } else if (response.status === 400) {
           object.setState({
             alertMessage:
