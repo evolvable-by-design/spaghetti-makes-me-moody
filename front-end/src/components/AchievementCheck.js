@@ -17,6 +17,13 @@ export function checkForAchievements(historyData) {
 			'text': "Trending Up!", 
 			'image': 'trending-up.png' });
 	}
+	// check for "first post" but don't need a function for this
+	if (historyData.length > 0) {
+		achievements.push( {
+			'text': "First Entry!",
+			'image': 'medal.png' });
+	}
+	if (historyData)
 	return achievements;
 }
 
