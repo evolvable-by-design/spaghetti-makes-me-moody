@@ -54,7 +54,7 @@ class OverallBox extends React.Component {
                   return;
                 },
                 label: function(tooltipItem, data) {
-                  return data['datasets'][0]['data'][tooltipItem['index']].toFixed(2);;
+                  return data['datasets'][0]['data'][tooltipItem['index']].toFixed(1);;
                 },
                 afterLabel: function(tooltipItem, data) {
                   return;
