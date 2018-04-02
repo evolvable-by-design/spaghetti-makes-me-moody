@@ -34,7 +34,6 @@ class HistoryEntry extends React.Component {
       self.props.state.password,
       self.props.entryIndex,
       function(response) {
-
         if (typeof response === 'undefined') {
           alert(
             'Something went reallly wrong deleting the entry (server is down possibly)'
