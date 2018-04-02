@@ -112,6 +112,9 @@ class OverallBox extends React.Component {
       sentimentList.push(element.sentimentData.feeling);
     }
 
+    dates.reverse();
+    sentimentList.reverse();
+    
     var data = {
       labels: dates,
       datasets: [
