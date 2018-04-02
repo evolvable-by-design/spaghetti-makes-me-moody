@@ -112,6 +112,10 @@ class OverallBox extends React.Component {
       sentimentList.push(element.sentimentData.feeling);
     }
 
+    // populate graph from left to right
+    dates.reverse();
+    sentimentList.reverse();
+
     var data = {
       labels: dates,
       datasets: [
