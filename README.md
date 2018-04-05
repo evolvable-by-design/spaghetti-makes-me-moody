@@ -15,8 +15,6 @@
 
 ### Features
 
-Features from Phase 2 of the project remains the same in Part 3, but with persisted date stored in a database, and network requests routed to our server. New features that have been introduced in Part 3 will be described below. This includes User Sign-Up, Persisted Journal Entries, and an Overall page that is now connected to real data. 
-
 #### Sign-In/Sign-Up
 Users are now able to create an account with Spaghetti Makes Me Moody. Users can still use the application without an account, but if they do not use an account, the entries will only be saved for that session. In addition, the user will not be able to obtain general feedback through the use of the Overall page. Furthermore, the user will be unable to collect any achievements. If a user chooses to sign-up, they can choose to create an account from the login page. For an account to be created, the user needs to create a username and password. There no restrictions on the username except for that it can only be any combination of letters and numbers. The same restrictions apply for the password except that any password has to also be at least 8 characters long. Once a user signs up, any current entries they wrote will be saved to their account, and the full features of the application will be unlocked to them.
 
