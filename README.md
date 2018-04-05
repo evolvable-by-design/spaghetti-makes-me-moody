@@ -1,8 +1,4 @@
-# assignment-3-spaghetti-makes-me-moody
-
-## Getting started
-
-`git clone https://github.com/csc309-18s/assignment-3-spaghetti-makes-me-moody`
+# spaghetti-makes-me-moody
 
 ## React front-end Instructions
 
