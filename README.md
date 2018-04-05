@@ -1,4 +1,4 @@
-# Spaghetti Makes Me Moody 
+# spaghetti makes me moody 
 
 ### How to Run
 * Start the back-end server:
