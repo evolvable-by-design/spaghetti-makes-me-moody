@@ -25,6 +25,7 @@ class LoginOverallView extends React.Component {
           historyData={this.props.historyData}
           changeView={this.props.changeView}
           changeLoginView={this.handleLoginViewChange}
+          handleSignUpSuccess={this.props.handleSignUpSuccess}
           handleLoginSuccess={this.props.handleLoginSuccess}
         />
       </div>
@@ -48,6 +49,7 @@ function MainView(props) {
       <SignUpView
         historyData={props.historyData}
         changeLoginView={props.changeLoginView}
+        handleSignUpSuccess={props.handleSignUpSuccess}
       />
     );
   } else {

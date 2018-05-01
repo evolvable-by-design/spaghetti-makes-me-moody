@@ -54,8 +54,9 @@ class SignUpView extends React.Component {
         if (response.status === 201) {
           object.props.changeLoginView(
             'Login',
-            'Sign up successful. Please log in with your username and password!'
+            'Sign up successful. Local entries have been saved. Please log in with your username and password!'
           );
+          object.props.handleSignUpSuccess();
         } else if (response.status === 400) {
           object.setState({
             alertMessage:
