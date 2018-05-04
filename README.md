@@ -10,7 +10,7 @@
   - navigate to /front-end
   - npm install
   - npm start
-  - If a window does not automatically open, navigate to http://localhost:3000 in Firefox or Chrome
+  - If a window does not automatically open, navigate to http://localhost:3000 in Chrome
   - For best effect, please use Google Chrome as the running browser
 
 ### Features
