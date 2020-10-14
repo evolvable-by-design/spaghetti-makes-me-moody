@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
+import Config from '../config.json';
 import './EntryDialog.css';
 import './MainBodyText.css';
 import './JournalBox.css';
@@ -18,7 +19,7 @@ function postAnalyzeSentiment(data) {
   return (
     axios
       .post(
-        'https://language.googleapis.com/v1/documents:analyzeSentiment?key=AIzaSyBAGVnmL3X96nCv0GLAxuFw4-czBVTrfyo',
+        `https://language.googleapis.com/v1/documents:analyzeSentiment?key=${Config.google.languageApiKey}`,
         data
       )
       /* This then + catch allows us to have errors even though using .all() later */
@@ -34,7 +35,7 @@ function postAnalyzeSentiment(data) {
 function postClassifyText(data) {
   return axios
     .post(
-      'https://language.googleapis.com/v1/documents:classifyText?key=AIzaSyBAGVnmL3X96nCv0GLAxuFw4-czBVTrfyo',
+      `https://language.googleapis.com/v1/documents:classifyText?key=${Config.google.languageApiKey}`,
       data
     )
     .then(function(content) {
