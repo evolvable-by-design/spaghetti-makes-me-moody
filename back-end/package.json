@@ -8,9 +8,11 @@
   "license": "ISC",
   "main": "app.js",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.12.3",
     "mongodb": "^3.6.1",
-    "swagger-express-mw": "^0.7.0"
+    "swagger-express-mw": "^0.7.0",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "husky": "^0.14.3",

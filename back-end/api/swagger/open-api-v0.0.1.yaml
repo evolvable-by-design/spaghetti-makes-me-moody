@@ -1,0 +1,219 @@
+# This file a conversion of the swagger.yaml file and was expanded with semantic descriptors
+openapi: 3.0.1
+info:
+  title: spaghetti-back-end
+  version: 0.0.1
+servers:
+- url: http://localhost:10010/
+- url: https://localhost:10010/
+paths:
+  /createUser/{userName}/password/{password}:
+    post:
+      description: Create a new user
+      operationId: createUser
+      x-@id: evolvable:createUser
+      parameters:
+      - name: userName
+        x-@id: evolvable:userName
+        in: path
+        description: The desired username
+        required: true
+        schema:
+          type: string
+      - name: password
+        x-@id: evolvable:password
+        in: path
+        description: The desired password
+        required: true
+        schema:
+          type: string
+      responses:
+        201:
+          description: User creation success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        400:
+          description: User name already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    x-swagger-router-controller: user_ops
+  /retrieveUser/{userName}/password/{password}:
+    get:
+      description: Retrieve an existing user
+      operationId: retrieveUser
+      x-@id: evolvable:findUser
+      parameters:
+      - name: userName
+        x-@id: evolvable:userName
+        in: path
+        description: The existing username
+        required: true
+        schema:
+          type: string
+      - name: password
+        x-@id: evolvable:password
+        in: path
+        description: The existing password
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        400:
+          description: User name does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        401:
+          description: Password incorrect
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    x-swagger-router-controller: user_ops
+  /updateUser/{userName}/password/{password}:
+    post:
+      description: Takes a JSON object in the request body, and adds it to thefront
+        of the 'entryList' field. Currently accepts any valid JSON object.
+      operationId: updateUser
+      x-@id: evolvable:updateUser
+      parameters:
+      - name: userName
+        x-@id: evolvable:userName
+        in: path
+        description: The needed username
+        required: true
+        schema:
+          type: string
+      - name: password
+        x-@id: evolvable:password
+        in: path
+        description: The needed password
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Entry to be added
+        content:
+          application/json:
+            schema:
+              type: object
+        required: true
+      responses:
+        201:
+          description: User updated successfully!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        404:
+          description: User not found!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-codegen-request-body-name: body
+    x-swagger-router-controller: user_ops
+  /deleteEntry/{userName}/password/{password}/entryIndex/{entryIndex}:
+    delete:
+      description: Deletes a user entry at given array index
+      operationId: deleteEntry
+      x-@id: evolvable:deleteEntry
+      parameters:
+      - name: userName
+        x-@id: evolvable:userName
+        in: path
+        description: The needed username
+        required: true
+        schema:
+          type: string
+      - name: password
+        x-@id: evolvable:password
+        in: path
+        description: The needed password
+        required: true
+        schema:
+          type: string
+      - name: entryIndex
+        x-@id: evolvable:entryIndex
+        in: path
+        description: Array index of the entry to be deleted
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: The entry at index was deleted successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        404:
+          description: User not found!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    x-swagger-router-controller: user_ops
+  /swagger:
+    x-swagger-pipe: swagger_raw
+components:
+  schemas:
+    genericResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          x-@id: schema:description
+    ErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          x-@id: schema:description
+# json-LD context
+x-@context:
+  x-@context: '@context'
+  x-@id: '@id'
+  x-@type: '@type'
+  x-@relation: 'dce:relation'
+  schema: 'http://schema.org/'
+  evolvable: 'https://github.com/evolvable-by-design/use-cases/spaghetti-makes-me-moody/vocab#'
