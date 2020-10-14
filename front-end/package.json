@@ -14,15 +14,15 @@
   },
   "homepage": ".",
   "dependencies": {
-    "axios": "^0.18.0",
-    "chart.js": "^2.7.1",
+    "axios": "^0.18.1",
+    "chart.js": "^2.9.3",
     "chartjs-plugin-deferred": "^1.0.0",
     "moment": "^2.20.1",
     "password-validator": "^4.0.0",
-    "react": "^16.2.0",
+    "react": "^16.13.1",
     "react-burger-menu": "^2.3.0",
     "react-chartjs-2": "^2.7.0",
-    "react-dom": "^16.2.0",
+    "react-dom": "^16.13.1",
     "react-modal": "^3.3.1",
     "react-moment": "^0.7.0",
     "react-progress-bar.js": "^0.2.0-dev",
@@ -40,7 +40,7 @@
     "babel-cli": "^6.26.0",
     "babel-preset-react": "^6.24.1",
     "husky": "^0.14.3",
-    "lint-staged": "^7.0.0",
+    "lint-staged": "^7.0.5",
     "prettier": "^1.10.2"
   },
   "lint-staged": {
