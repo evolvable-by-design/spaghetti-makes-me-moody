@@ -1,5 +1,33 @@
 import axios from 'axios';
-var baseUrl = 'http://localhost:10010';
+import vocabulary from '../vocabulary'
+export var baseUrl = 'http://localhost:10010';
+
+export class SpaghettiService {
+
+  constructor(pivo) {
+    this.pivo = pivo;
+  }
+
+  createUser(context, semanticMapping, callback) {
+    const parameters = this._getParameters(context, semanticMapping)
+
+    this.pivo.does(vocabulary.actions.createUser).getOrUndefined()
+      .invoke(parameters)
+      .then(response => {
+        callback(response.status)
+      })
+      .catch(() => {
+        callback(504)
+      })
+  }
+
+  _getParameters(context, semanticMapping) {
+    return Object.entries(semanticMapping)
+      .map(([semantics, key]) => ([ semantics, context[key] ]))
+      .reduce((acc, val) => { acc[val[0]] = val[1]; return acc; }, {});
+  }
+
+}
 
 export function createUser(username, password, callback) {
   var url = baseUrl + '/createUser/' + username + '/password/' + password

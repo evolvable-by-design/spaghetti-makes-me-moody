@@ -3,7 +3,8 @@ import './SignUpView.css';
 import './SubmitButton.css';
 import './DynamicCheckMark.css';
 
-import { createUser } from './SpaghettiService'
+import withSpaghettiService from './WithSpaghettiService'
+import vocabulary from '../vocabulary';
 
 // password / username validation setup
 var passwordValidator = require('./PasswordValidator');
@@ -37,9 +38,14 @@ class SignUpView extends React.Component {
     this.userSignUp = this.userSignUp.bind(this);
   }
 
+  semanticMappings = {
+    [vocabulary.terms.userName]: 'usernameField',
+    [vocabulary.terms.password]: 'passwordField',
+  }
+
   userSignUp() {
     var object = this
-    createUser(this.state.usernameField, this.state.passwordField, function(responseCode) {
+    this.props.spaghettiService.createUser({ ...this.props, ...this.state }, this.semanticMappings, function(responseCode) {
       if (responseCode === 201) {
         object.props.changeLoginView('Login');
       } else if (responseCode === 400)  {
@@ -227,4 +233,4 @@ function AlertBox(props) {
   }
 }
 
-export default SignUpView;
+export default withSpaghettiService(SignUpView);
