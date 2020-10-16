@@ -2,6 +2,25 @@ spaghetti-back-end
 ==================
 **Version:** 0.0.1
 
+### /analyzeText/
+---
+##### ***POST***
+**Description:** Get analysis data and feedback for given text
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| text | body | the text entry to be analyzed | Yes | [analyzeEntry](#analyzeentry) |
+
+**Responses**
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | Text analysis success | [entryAnalysis](#entryanalysis) |
+| 400 | Error | [ErrorResponse](#errorresponse) |
+| default | Error | [ErrorResponse](#errorresponse) |
+
 ### /createUser/{userName}/password/{password}
 ---
 ##### ***POST***
@@ -101,3 +120,16 @@ spaghetti-back-end
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
 | message | string |  | Yes |
+
+### analyzeEntry  
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| text | string |  | Yes |
+
+### entryAnalysis  
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| message | string |  | Yes |
+| data | object |  | Yes |
