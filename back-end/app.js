@@ -6,7 +6,7 @@ const cors = require('cors');
 const path = require('path');
 const YAML = require('yamljs');
 const apiDocumentation = YAML.load(
-  path.join(__dirname, '/api/swagger/open-api-v0.0.1.yaml')
+  path.join(__dirname, '/api/swagger/open-api-v0.0.2.yaml')
 );
 module.exports = app; // for testing
 
