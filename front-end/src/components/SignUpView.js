@@ -41,6 +41,7 @@ class SignUpView extends React.Component {
   semanticMappings = {
     [vocabulary.terms.userName]: 'usernameField',
     [vocabulary.terms.password]: 'passwordField',
+    [vocabulary.terms.history]: 'historyData',
   }
 
   userSignUp() {
