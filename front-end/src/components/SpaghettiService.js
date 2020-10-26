@@ -21,6 +21,27 @@ export class SpaghettiService {
       })
   }
 
+  analyzeText(context, semanticMapping, callback) {
+    const parameters = this._getParameters(context, semanticMapping)
+
+    this.pivo.does(vocabulary.actions.analyze).getOrUndefined()
+      .invoke(parameters)
+      .then(function(response) {
+        if (response.isError) {
+          if (response.rawResponse.status) {
+            callback(response.rawResponse.status);
+          } else if (response.request) {
+            callback(504);
+          } else {
+            callback(504);
+          }
+        } else {
+          callback(response.rawResponse)
+        }
+      })
+      .catch(() => callback(504))
+  }
+
   _getParameters(context, semanticMapping) {
     return Object.entries(semanticMapping)
       .map(([semantics, key]) => ([ semantics, context[key] ]))

@@ -4,7 +4,8 @@ import './EntryDialog.css';
 import './MainBodyText.css';
 import './JournalBox.css';
 import './SubmitButton.css';
-import { analyzeText } from './SpaghettiService'
+import withSpaghettiService from './WithSpaghettiService';
+import vocabulary from '../vocabulary';
 
 const textBoxLayoutStyle = {
   textAlign: 'center'
@@ -15,6 +16,13 @@ const buttonLayoutStyle = {
 };
 
 class JournalView extends React.Component {
+
+  semanticMappings = {
+    [vocabulary.terms.userName]: 'username',
+    [vocabulary.terms.password]: 'password',
+    [vocabulary.terms.textToAnalyze]: 'entryValue',
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -56,17 +64,21 @@ class JournalView extends React.Component {
   handleSubmit(event) {
     var self = this;
     event.preventDefault();
-    analyzeText(self.state.entryValue, function(response) {
-      var status = response.status;
-      if (status != 200) {
-        console.log(status)
-        console.log("Something went wrong... TODO Error messaging for user");
-        return;
+    this.props.spaghettiService.analyzeText(
+      {...self.props, ...self.state},
+      this.semanticMappings,
+      function(response) {
+        var status = response.status;
+        if (status != 200) {
+          console.log(status)
+          console.log("Something went wrong... TODO Error messaging for user");
+          return;
+        }
+        self.props.setHistoryData(response.data.data);
+        self.resetEntryBox();
+        self.openDialog();
       }
-      self.props.setHistoryData(response.data.data);
-      self.resetEntryBox();
-      self.openDialog();
-    })
+    )
   }
 
   render() {
@@ -118,4 +130,4 @@ class JournalView extends React.Component {
   }
 }
 
-export default JournalView;
+export default withSpaghettiService(JournalView);

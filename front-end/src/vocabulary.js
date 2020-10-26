@@ -6,8 +6,16 @@ export default {
     history: `${prefix}history`,
     userName: `${prefix}userName`,
     password: `${prefix}password`,
+    textToAnalyze: `${prefix}textToAnalyze`,
+    analysisDate: `${prefix}analysisDate`,
+    analysisEntry: `${prefix}analysisEntry`,
+    sentiment: `${prefix}sentiment`,
+    feelingScore: `${prefix}feelingScore`,
+    analysisFeedback: `${prefix}analysisFeedback`,
+    classification: `${prefix}classification`,
   },
   actions: {
-    createUser: `${prefix}createUser`
+    analyze: `${prefix}analyze`,
+    createUser: `${prefix}createUser`,
   }
 }
