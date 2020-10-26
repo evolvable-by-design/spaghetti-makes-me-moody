@@ -251,6 +251,12 @@ components:
         text:
           x-@id: evolvable:textToAnalyze
           type: string
+        username:
+          x-@id: evolvable:userName
+          type: string
+        password:
+          x-@id: evolvable:password
+          type: string
     entryAnalysis:
       required:
       - data

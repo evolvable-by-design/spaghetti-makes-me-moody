@@ -11,6 +11,7 @@
   It is a good idea to list the modules that your application depends on in the package.json in the project root
  */
 const textAnalyzer = require('../helpers/textAnalyzer');
+const mongoIF = require('../helpers/mongoInterface');
 const axios = require('axios');
 const config = require('../../config.json');
 
@@ -37,7 +38,12 @@ module.exports = {
   Param 2: a handle to the response object
  */
 function analyzeEntry(req, res) {
-  var text = req.swagger.params.text.value.text;
+  var text = req.swagger.params.data.value.text;
+  var username = req.swagger.params.data.value.username;
+  var password = req.swagger.params.data.value.password;
+  console.log(username);
+  console.log(password);
+  console.log(!!username || !!password);
   let postData = {
     document: {
       type: 'PLAIN_TEXT',
@@ -61,11 +67,29 @@ function analyzeEntry(req, res) {
           sentimentData: sentData,
           classificationData: classData
         };
-        historyData;
-        res.json({
-          message: 'Entry successfully analyzed!',
-          data: historyData
-        });
+        if (!!username || !!password) {
+          mongoIF
+            .updateUser(username, password, historyData)
+            .then(function(isUpdated) {
+              if (isUpdated === 1) {
+                res.status(404).json('User not found!');
+              } else {
+                res.status(201).json({
+                  message: 'Entry successfully analyzed and saved!',
+                  data: historyData
+                });
+              }
+            })
+            .catch(function(error) {
+              res.status(400).json('Something went very wrong');
+              console.log(error);
+            });
+        } else {
+          res.status(200).json({
+            message: 'Entry successfully analyzed!',
+            data: historyData
+          });
+        }
       })
     )
     .catch(function(error) {
