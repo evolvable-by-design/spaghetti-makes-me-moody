@@ -18,8 +18,8 @@ const buttonLayoutStyle = {
 class JournalView extends React.Component {
 
   semanticMappings = {
-    [vocabulary.terms.userName]: 'username',
-    [vocabulary.terms.password]: 'password',
+    [vocabulary.terms.userName]: 'state/username',
+    [vocabulary.terms.password]: 'state/password',
     [vocabulary.terms.textToAnalyze]: 'entryValue',
   }
 

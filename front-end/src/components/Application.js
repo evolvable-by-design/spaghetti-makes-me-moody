@@ -84,6 +84,7 @@ function MainView(props) {
     return (
       <JournalView
         changeView={props.changeView}
+        state={props.state}
         setHistoryData={props.setHistoryData}
       />
     );

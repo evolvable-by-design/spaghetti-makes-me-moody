@@ -24,6 +24,9 @@ export class SpaghettiService {
   analyzeText(context, semanticMapping, callback) {
     const parameters = this._getParameters(context, semanticMapping)
 
+    console.log(context)
+    console.log(parameters)
+
     this.pivo.does(vocabulary.actions.analyze).getOrUndefined()
       .invoke(parameters)
       .then(function(response) {
@@ -44,8 +47,12 @@ export class SpaghettiService {
 
   _getParameters(context, semanticMapping) {
     return Object.entries(semanticMapping)
-      .map(([semantics, key]) => ([ semantics, context[key] ]))
+      .map(([semantics, key]) => ([ semantics, this._getValue(context, key) ]))
       .reduce((acc, val) => { acc[val[0]] = val[1]; return acc; }, {});
+  }
+
+  _getValue(context, key) {
+    return key.split('/').reduce((c, fragment) => c[fragment], context)
   }
 
 }
