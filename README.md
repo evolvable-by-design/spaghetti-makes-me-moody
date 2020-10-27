@@ -1,4 +1,4 @@
-Spaghetti Makes Me Moody
+# Spaghetti Makes Me Moody
 
 Spaghetti Makes Me Moody is an application developed by [danielsinclairtill](https://github.com/danielsinclairtill). It is a web app were you can say how was your day and it will tell you how happy your description was. In addition, you can get an history of your input.
 
